@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Италия лыжи ⛷️ Снег & Солнце 🇮🇹</title>
+    <title>Val Gardena ⛷️ Италия 2027</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -18,12 +18,12 @@
         body {
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(180deg, #00b4db 0%, #0083b0 35%, #1c5082 70%, #dbeefd 100%);
+            background: linear-gradient(180deg, #0099ff 0%, #3a7bd5 35%, #00d2ff 65%, #e0f2fe 100%);
             background-attachment: fixed;
             color: #1a2536;
             position: relative;
             overflow-x: hidden;
-            padding: 20px 12px 100px 12px;
+            padding: 15px 12px 100px 12px;
         }
 
         #winter-canvas {
@@ -43,43 +43,68 @@
             z-index: 10;
         }
 
+        /* HEADER & SHAPES */
         .header {
             text-align: center;
-            margin-top: 10px;
-            margin-bottom: 15px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .location-tag {
+            display: inline-block;
+            background: #e63946;
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 3px 12px;
+            border-radius: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.4);
+            margin-bottom: 4px;
         }
 
         .header h1 {
-            font-family: 'Caveat', cursive;
-            font-size: 3rem;
-            color: #fff;
-            text-shadow: 0 0 15px rgba(255, 209, 102, 0.9), 0 4px 10px rgba(0, 0, 0, 0.3);
-            letter-spacing: 1px;
-            line-height: 1.1;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.8rem;
+            color: #ffffff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 30px rgba(255, 209, 102, 0.6);
+            letter-spacing: -0.5px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .header h1 span {
+            color: #ffd166;
+            display: inline-block;
         }
 
         .header p {
             font-size: 0.9rem;
-            color: #e0f2fe;
-            margin-top: 6px;
+            color: #ffffff;
             font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
         .sync-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             color: #ffffff;
             font-size: 0.75rem;
             padding: 4px 12px;
             border-radius: 14px;
-            margin-top: 8px;
+            margin-top: 10px;
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .sync-dot {
@@ -97,71 +122,82 @@
             100% { opacity: 0.4; transform: scale(0.9); }
         }
 
-        /* Interactive Ski Scene */
-        .ski-scene {
+        /* Mountain & Interactive Scene */
+        .mountains-bg {
+            width: 100%;
+            height: 110px;
+            margin-bottom: 15px;
+            position: relative;
             display: flex;
             justify-content: space-around;
             align-items: flex-end;
-            height: 95px;
-            margin-bottom: 15px;
-            position: relative;
+            padding-bottom: 5px;
         }
 
-        .sun-wrap {
-            font-size: 3.5rem;
-            animation: sunGlow 3s infinite ease-in-out alternate;
-            filter: drop-shadow(0 0 20px #ffb703);
-            cursor: pointer;
-            user-select: none;
-            transition: transform 0.2s;
+        /* CSS Mountain Silhouette */
+        .mountain-peaks {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+            clip-path: polygon(0% 100%, 15% 35%, 28% 70%, 45% 15%, 62% 65%, 80% 25%, 100% 100%);
+            z-index: 1;
+            pointer-events: none;
         }
 
-        .sun-wrap:active {
-            transform: scale(1.2) rotate(15deg);
-        }
-
-        @keyframes sunGlow {
-            0% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 15px #ffb703); }
-            100% { transform: scale(1.1) rotate(10deg); filter: drop-shadow(0 0 30px #ffb703); }
-        }
-
-        .snowman {
-            font-size: 3.2rem;
-            animation: snowmanBounce 2.5s infinite ease-in-out;
-            cursor: pointer;
-            user-select: none;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-            transition: transform 0.2s;
-        }
-
-        .snowman:active {
-            transform: scale(1.2) rotate(-10deg);
-        }
-
-        @keyframes snowmanBounce {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-8px) rotate(3deg); }
-        }
-
-        .flag-italy {
+        .scene-item {
             font-size: 2.8rem;
-            animation: flagWave 2s infinite ease-in-out;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+            z-index: 2;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
         }
 
-        @keyframes flagWave {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
+        .scene-item:active {
+            transform: scale(1.25) rotate(10deg);
+        }
+
+        .sun-item {
+            font-size: 3.5rem;
+            animation: sunPulse 3s infinite ease-in-out alternate;
+            filter: drop-shadow(0 0 25px #ffb703);
+        }
+
+        @keyframes sunPulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 20px #ffb703); }
+            100% { transform: scale(1.12) rotate(8deg); filter: drop-shadow(0 0 35px #ffb703); }
+        }
+
+        .snowman-item {
+            animation: snowmanWobble 2.5s infinite ease-in-out;
+        }
+
+        @keyframes snowmanWobble {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-6px) rotate(3deg); }
+        }
+
+        .pizza-item {
+            animation: pizzaFloat 2s infinite ease-in-out;
+        }
+
+        @keyframes pizzaFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 24px;
             padding: 20px 16px;
-            box-shadow: 0 20px 45px rgba(0, 60, 120, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 45px rgba(0, 60, 120, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.9);
         }
 
         .input-box {
@@ -169,7 +205,7 @@
             flex-direction: column;
             gap: 10px;
             margin-bottom: 16px;
-            background: rgba(235, 245, 255, 0.8);
+            background: rgba(224, 242, 254, 0.6);
             padding: 12px;
             border-radius: 16px;
             border: 1px solid rgba(0, 131, 176, 0.2);
@@ -221,14 +257,14 @@
         }
 
         .progress-box {
-            background: rgba(224, 242, 254, 0.6);
+            background: rgba(224, 242, 254, 0.7);
             border-radius: 14px;
             padding: 12px 14px;
             margin-bottom: 16px;
             display: flex;
             flex-direction: column;
             gap: 6px;
-            border: 1px solid rgba(186, 230, 253, 0.8);
+            border: 1px solid rgba(186, 230, 253, 0.9);
         }
 
         .progress-info {
@@ -395,11 +431,7 @@
             opacity: 0.7;
         }
 
-        .btn-delete:hover {
-            opacity: 1;
-        }
-
-        /* Modal styling for editing names */
+        /* Modal styling */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -503,23 +535,26 @@
 
     <div class="container">
         <div class="header">
-            <h1>🇮🇹 Италия Лыжи 2027 ⛷️</h1>
-            <p>Снег, Солнце & Aperol Spritz ☀️🍹</p>
+            <div class="location-tag">🇮🇹 Dolomiti Superski</div>
+            <h1>VAL GARDENA <span>2027</span></h1>
+            <p>🏔️ Горы • 🍕 Пицца • ☀️ Солнце • ⛷️ Лыжи</p>
             <div class="sync-badge">
                 <div class="sync-dot"></div>
                 <span id="syncStatus">Подключение к Firebase...</span>
             </div>
         </div>
 
-        <div class="ski-scene">
-            <div class="sun-wrap" title="Альпийское солнце!">☀️</div>
-            <div class="snowman" title="Привет из Доломитов!">☃️🕶️</div>
-            <div class="flag-italy">🇮🇹</div>
+        <div class="mountains-bg">
+            <div class="mountain-peaks"></div>
+            <div class="scene-item sun-item" title="Яркое альпийское солнце!">☀️</div>
+            <div class="scene-item snowman-item" title="Снеговик Val Gardena!">☃️🕶️</div>
+            <div class="scene-item pizza-item" title="Итальянская пицца!">🍕</div>
+            <div class="scene-item" title="Погнали на склон!">⛷️</div>
         </div>
 
         <div class="card">
             <div class="input-box">
-                <input type="text" id="itemInput" placeholder="Что нужно взять на лыжи?">
+                <input type="text" id="itemInput" placeholder="Что нужно взять в Валь-Гардену?">
                 <div class="input-row">
                     <input type="text" id="nameInput" placeholder="Кто берет?">
                     <button class="btn-add" onclick="addItem()">+ Добавить</button>
@@ -537,9 +572,9 @@
             </div>
 
             <div class="filter-tabs">
-                <div class="tab active" onclick="setFilter('all', this)">Все снаряжение</div>
+                <div class="tab active" onclick="setFilter('all', this)">Все вещи</div>
                 <div class="tab" onclick="setFilter('pending', this)">Нужно собрать</div>
-                <div class="tab" onclick="setFilter('done', this)">Уже упаковано</div>
+                <div class="tab" onclick="setFilter('done', this)">Уже в багажнике</div>
             </div>
 
             <ul class="item-list" id="itemList"></ul>
@@ -578,7 +613,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <script>
-        // Interactive Canvas Snow & Sunbeams
+        // Interactive Canvas Snow Effect
         const canvas = document.getElementById('winter-canvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
@@ -590,20 +625,18 @@
         });
 
         const snowflakes = [];
-        for (let i = 0; i < 70; i++) {
+        for (let i = 0; i < 60; i++) {
             snowflakes.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
                 r: Math.random() * 3 + 1,
-                d: Math.random() * 1,
-                opacity: Math.random() * 0.8 + 0.2
+                d: Math.random() * 1
             });
         }
 
         function drawWinterEffect() {
             ctx.clearRect(0, 0, width, height);
 
-            // Falling snow
             ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
             ctx.beginPath();
             snowflakes.forEach(p => {
@@ -638,32 +671,27 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // Default list tailored for Italian Ski Trip
         const defaultItems = [
             { text: "Горнолыжная куртка и штаны", takenBy: "Каждый сам", done: false },
             { text: "Термобелье (2 комплекта)", takenBy: "", done: false },
             { text: "Горнолыжная маска / очки", takenBy: "", done: false },
             { text: "Шлем горнолыжный", takenBy: "", done: false },
-            { text: "Перчатки / Варежки (непромокаемые)", takenBy: "", done: false },
+            { text: "Перчатки (непромокаемые)", takenBy: "", done: false },
             { text: "Солнцезащитный крем SPF 50", takenBy: "", done: false },
-            { text: "Гигиеническая помада от мороза", takenBy: "", done: false },
             { text: "Сушилка для ботинок", takenBy: "Вова", done: false },
             { text: "Горнолыжные носки (3 пары)", takenBy: "", done: false },
             { text: "Скипасс / Документы / Страховка", takenBy: "Каждый сам", done: false },
-            { text: "Купальник / Плавки (для SPA и терм)", takenBy: "", done: false },
-            { text: "Апре-ски свитера / Наряды", takenBy: "", done: false },
-            { text: "Балаклава / Гейтер на шею", takenBy: "", done: false },
-            { text: "Защита спины / шорты", takenBy: "", done: false },
-            { text: "Евроадаптеры и Пауэрбанки", takenBy: "Витя", done: false },
+            { text: "Купальник / Плавки (для SPA)", takenBy: "", done: false },
+            { text: "Балаклава / Бафф на шею", takenBy: "", done: false },
+            { text: "Пауэрбанки и зарядки", takenBy: "Витя", done: false },
             { text: "Настолки для вечеров", takenBy: "Аня", done: false },
-            { text: "Бюджет на Aperol Spritz 🍹", takenBy: "Все", done: false }
+            { text: "Бюджет на пиццу и Aperol 🍕🍹", takenBy: "Все", done: false }
         ];
 
         let items = defaultItems;
         let currentFilter = 'all';
         let editingIndex = null;
 
-        // Auto-sorting: Done (1) -> Assigned (2) -> Open (3)
         function sortItems() {
             items.sort((a, b) => {
                 const getPriority = (item) => {
@@ -675,8 +703,7 @@
             });
         }
 
-        // Firebase node: 'italy_ski_checklist'
-        db.ref('italy_ski_checklist').on('value', (snapshot) => {
+        db.ref('val_gardena_checklist').on('value', (snapshot) => {
             const data = snapshot.val();
             if (data) {
                 items = data;
@@ -685,14 +712,14 @@
             } else {
                 items = defaultItems;
                 sortItems();
-                db.ref('italy_ski_checklist').set(items);
+                db.ref('val_gardena_checklist').set(items);
             }
             document.getElementById('syncStatus').innerText = "Онлайн (Синхронизировано)";
         });
 
         function saveState() {
             sortItems();
-            db.ref('italy_ski_checklist').set(items);
+            db.ref('val_gardena_checklist').set(items);
             renderItems();
         }
 
@@ -765,7 +792,6 @@
             renderItems();
         }
 
-        // Modal Functions
         function openModal(index) {
             editingIndex = index;
             const item = items[index];
