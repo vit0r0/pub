@@ -134,7 +134,6 @@
             padding-bottom: 5px;
         }
 
-        /* CSS Mountain Silhouette */
         .mountain-peaks {
             position: absolute;
             bottom: 0;
@@ -460,7 +459,7 @@
             border-radius: 20px;
             padding: 22px;
             width: 100%;
-            max-width: 380px;
+            max-width: 420px;
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -479,14 +478,17 @@
             flex-wrap: wrap;
             gap: 6px;
             justify-content: center;
+            max-height: 180px;
+            overflow-y: auto;
+            padding: 4px;
         }
 
         .name-chip {
             background: #f1f5f9;
             border: 1px solid #cbd5e1;
-            padding: 6px 12px;
+            padding: 6px 10px;
             border-radius: 12px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: #334155;
             cursor: pointer;
             font-weight: 700;
@@ -588,13 +590,16 @@
             
             <div style="font-size: 0.8rem; color: #64748b; text-align: center;">Быстрый выбор участника:</div>
             <div class="quick-names">
-                <span class="name-chip" onclick="selectQuickName('Вова')">Вова</span>
-                <span class="name-chip" onclick="selectQuickName('Верон')">Верон</span>
-                <span class="name-chip" onclick="selectQuickName('Витя')">Витя</span>
-                <span class="name-chip" onclick="selectQuickName('Аня')">Аня</span>
-                <span class="name-chip" onclick="selectQuickName('Леша')">Леша</span>
-                <span class="name-chip" onclick="selectQuickName('Руся')">Руся</span>
-                <span class="name-chip" onclick="selectQuickName('Маша')">Маша</span>
+                <span class="name-chip" onclick="selectQuickName('Alexander')">Alexander</span>
+                <span class="name-chip" onclick="selectQuickName('Johann')">Johann</span>
+                <span class="name-chip" onclick="selectQuickName('Wladimir')">Wladimir</span>
+                <span class="name-chip" onclick="selectQuickName('Dmitro')">Dmitro</span>
+                <span class="name-chip" onclick="selectQuickName('Daniil')">Daniil</span>
+                <span class="name-chip" onclick="selectQuickName('Anna')">Anna</span>
+                <span class="name-chip" onclick="selectQuickName('Aleksej')">Aleksej</span>
+                <span class="name-chip" onclick="selectQuickName('Viktor')">Viktor</span>
+                <span class="name-chip" onclick="selectQuickName('Olena')">Olena</span>
+                <span class="name-chip" onclick="selectQuickName('Alex')">Alex</span>
             </div>
 
             <div style="font-size: 0.8rem; color: #64748b; text-align: center; margin-top: 4px;">Или введите имя:</div>
@@ -656,11 +661,11 @@
         }
         drawWinterEffect();
 
-        // --- FIREBASE CONFIGURATION ---
+        // --- NEW FIREBASE CONFIGURATION (SKI-DB) ---
         const firebaseConfig = {
             apiKey: "AIzaSyC6qT5vyGXr48TwGwa76ev65UjDZ5nWn54",
             authDomain: "camping-2027.firebaseapp.com",
-            databaseURL: "https://camping-2027-default-rtdb.europe-west1.firebasedatabase.app",
+            databaseURL: "https://ski-db-f2a97-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "camping-2027",
             storageBucket: "camping-2027.firebasestorage.app",
             messagingSenderId: "441053727767",
@@ -678,13 +683,13 @@
             { text: "Шлем горнолыжный", takenBy: "", done: false },
             { text: "Перчатки (непромокаемые)", takenBy: "", done: false },
             { text: "Солнцезащитный крем SPF 50", takenBy: "", done: false },
-            { text: "Сушилка для ботинок", takenBy: "Вова", done: false },
+            { text: "Сушилка для ботинок", takenBy: "Alexander", done: false },
             { text: "Горнолыжные носки (3 пары)", takenBy: "", done: false },
             { text: "Скипасс / Документы / Страховка", takenBy: "Каждый сам", done: false },
             { text: "Купальник / Плавки (для SPA)", takenBy: "", done: false },
             { text: "Балаклава / Бафф на шею", takenBy: "", done: false },
-            { text: "Пауэрбанки и зарядки", takenBy: "Витя", done: false },
-            { text: "Настолки для вечеров", takenBy: "Аня", done: false },
+            { text: "Пауэрбанки и зарядки", takenBy: "Wladimir", done: false },
+            { text: "Настолки для вечеров", takenBy: "Anna", done: false },
             { text: "Бюджет на пиццу и Aperol 🍕🍹", takenBy: "Все", done: false }
         ];
 
