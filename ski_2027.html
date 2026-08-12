@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Летний Кемпинг 🏕️</title>
+    <title>Италия лыжи ⛷️ Снег & Солнце 🇮🇹</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -18,15 +18,15 @@
         body {
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(180deg, #050d1a 0%, #0a192f 40%, #0d233a 70%, #152d24 100%);
+            background: linear-gradient(180deg, #00b4db 0%, #0083b0 35%, #1c5082 70%, #dbeefd 100%);
             background-attachment: fixed;
-            color: #f0f4f8;
+            color: #1a2536;
             position: relative;
             overflow-x: hidden;
             padding: 20px 12px 100px 12px;
         }
 
-        #night-canvas {
+        #winter-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -51,32 +51,35 @@
 
         .header h1 {
             font-family: 'Caveat', cursive;
-            font-size: 2.8rem;
-            color: #ffd166;
-            text-shadow: 0 0 15px rgba(255, 209, 102, 0.6), 0 0 30px rgba(255, 107, 107, 0.4);
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 209, 102, 0.9), 0 4px 10px rgba(0, 0, 0, 0.3);
             letter-spacing: 1px;
             line-height: 1.1;
         }
 
         .header p {
-            font-size: 0.85rem;
-            color: #a8dadc;
+            font-size: 0.9rem;
+            color: #e0f2fe;
             margin-top: 6px;
-            font-weight: 600;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .sync-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(6, 214, 160, 0.15);
-            border: 1px solid rgba(6, 214, 160, 0.4);
-            color: #06d6a0;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #ffffff;
             font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 4px 12px;
+            border-radius: 14px;
             margin-top: 8px;
             font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         .sync-dot {
@@ -94,97 +97,71 @@
             100% { opacity: 0.4; transform: scale(0.9); }
         }
 
-        .camp-scene {
+        /* Interactive Ski Scene */
+        .ski-scene {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: flex-end;
-            gap: 20px;
-            height: 80px;
-            margin-bottom: 20px;
+            height: 95px;
+            margin-bottom: 15px;
             position: relative;
         }
 
-        .guitar-wrap {
-            font-size: 3rem;
-            animation: guitarRock 3s infinite ease-in-out;
-            transform-origin: bottom center;
-            filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.3));
+        .sun-wrap {
+            font-size: 3.5rem;
+            animation: sunGlow 3s infinite ease-in-out alternate;
+            filter: drop-shadow(0 0 20px #ffb703);
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s;
         }
 
-        @keyframes guitarRock {
+        .sun-wrap:active {
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        @keyframes sunGlow {
+            0% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 15px #ffb703); }
+            100% { transform: scale(1.1) rotate(10deg); filter: drop-shadow(0 0 30px #ffb703); }
+        }
+
+        .snowman {
+            font-size: 3.2rem;
+            animation: snowmanBounce 2.5s infinite ease-in-out;
+            cursor: pointer;
+            user-select: none;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            transition: transform 0.2s;
+        }
+
+        .snowman:active {
+            transform: scale(1.2) rotate(-10deg);
+        }
+
+        @keyframes snowmanBounce {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        .flag-italy {
+            font-size: 2.8rem;
+            animation: flagWave 2s infinite ease-in-out;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes flagWave {
             0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(8deg) translateY(-4px); }
-        }
-
-        .campfire {
-            position: relative;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .logs {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 14px;
-        }
-
-        .log {
-            position: absolute;
-            width: 45px;
-            height: 9px;
-            background: #5c3d2e;
-            border-radius: 5px;
-            border: 1px solid #3d2314;
-        }
-        .log.l1 { transform: rotate(15deg); left: 5px; }
-        .log.l2 { transform: rotate(-15deg); right: 5px; }
-
-        .flame {
-            position: absolute;
-            bottom: 8px;
-            border-radius: 50% 50% 20% 20%;
-            transform-origin: center bottom;
-            animation: flicker 0.15s infinite alternate ease-in-out;
-        }
-
-        .flame.f1 {
-            width: 38px;
-            height: 48px;
-            background: radial-gradient(circle, #ff4500 20%, #ff8c00 70%, transparent 100%);
-            box-shadow: 0 0 20px #ff4500, 0 0 40px #ff8c00;
-        }
-
-        .flame.f2 {
-            width: 24px;
-            height: 32px;
-            background: radial-gradient(circle, #ffe600 30%, #ff8c00 80%);
-            animation-duration: 0.1s;
-        }
-
-        .flame.f3 {
-            width: 12px;
-            height: 18px;
-            background: #ffffff;
-            animation-duration: 0.08s;
-        }
-
-        @keyframes flicker {
-            0% { transform: scale(1) rotate(-2deg); opacity: 0.95; }
-            100% { transform: scale(1.08, 1.12) rotate(2deg); opacity: 1; }
+            50% { transform: rotate(5deg); }
         }
 
         .card {
-            background: rgba(13, 35, 58, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            padding: 18px 14px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 20px 16px;
+            box-shadow: 0 20px 45px rgba(0, 60, 120, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
         .input-box {
@@ -192,10 +169,10 @@
             flex-direction: column;
             gap: 10px;
             margin-bottom: 16px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(235, 245, 255, 0.8);
             padding: 12px;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 131, 176, 0.2);
         }
 
         .input-row {
@@ -206,56 +183,65 @@
         input[type="text"] {
             width: 100%;
             padding: 12px 14px;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
+            border: 1.5px solid #bde0fe;
+            border-radius: 12px;
             font-size: 0.9rem;
             font-family: inherit;
             outline: none;
-            background: rgba(10, 25, 47, 0.8);
-            color: #ffffff;
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
         }
 
         input[type="text"]::placeholder {
-            color: #8892b0;
+            color: #94a3b8;
         }
 
         input[type="text"]:focus {
-            border-color: #ffd166;
+            border-color: #0083b0;
+            box-shadow: 0 0 0 3px rgba(0, 131, 176, 0.2);
         }
 
         .btn-add {
-            background: linear-gradient(135deg, #ff9f1c 0%, #ffbf69 100%);
-            color: #050d1a;
+            background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+            color: #ffffff;
             border: none;
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 800;
             font-size: 0.95rem;
             cursor: pointer;
             width: 100%;
+            box-shadow: 0 4px 12px rgba(251, 133, 0, 0.35);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn-add:active {
+            transform: scale(0.98);
         }
 
         .progress-box {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 10px 14px;
+            background: rgba(224, 242, 254, 0.6);
+            border-radius: 14px;
+            padding: 12px 14px;
             margin-bottom: 16px;
             display: flex;
             flex-direction: column;
             gap: 6px;
+            border: 1px solid rgba(186, 230, 253, 0.8);
         }
 
         .progress-info {
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #ffd166;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #0077b6;
         }
 
         .progress-bar-bg {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            background: #cbd5e1;
             border-radius: 10px;
             overflow: hidden;
         }
@@ -263,7 +249,7 @@
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #ff9f1c, #06d6a0);
+            background: linear-gradient(90deg, #ffb703, #06d6a0);
             border-radius: 10px;
             transition: width 0.4s ease;
         }
@@ -277,21 +263,23 @@
         }
 
         .tab {
-            padding: 6px 12px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            font-size: 0.75rem;
+            padding: 8px 14px;
+            background: #e2e8f0;
+            border: 1px solid #cbd5e1;
+            border-radius: 18px;
+            font-size: 0.78rem;
             font-weight: 700;
-            color: #a8dadc;
+            color: #475569;
             white-space: nowrap;
             cursor: pointer;
+            transition: all 0.2s;
         }
 
         .tab.active {
-            background: #ffd166;
-            color: #050d1a;
-            border-color: #ffd166;
+            background: #0083b0;
+            color: #ffffff;
+            border-color: #0083b0;
+            box-shadow: 0 3px 8px rgba(0, 131, 176, 0.3);
         }
 
         .item-list {
@@ -302,47 +290,22 @@
         }
 
         .item-card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
             border-radius: 14px;
-            padding: 10px 12px;
+            padding: 12px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
 
         .item-card.completed {
-            background: rgba(6, 214, 160, 0.08);
-            border-color: rgba(6, 214, 160, 0.25);
-            opacity: 0.7;
-        }
-
-        .reorder-btns {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            flex-shrink: 0;
-        }
-
-        .btn-move {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: #a8dadc;
-            font-size: 0.65rem;
-            width: 20px;
-            height: 18px;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-        }
-
-        .btn-move:active {
-            background: #ffd166;
-            color: #050d1a;
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+            opacity: 0.75;
         }
 
         .item-left {
@@ -357,12 +320,14 @@
         .checkbox {
             width: 22px;
             height: 22px;
-            border: 2px solid #ffd166;
+            border: 2px solid #0083b0;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            background: #fff;
+            transition: all 0.2s;
         }
 
         .item-card.completed .checkbox {
@@ -372,7 +337,7 @@
 
         .checkbox::after {
             content: '✓';
-            color: #050d1a;
+            color: #ffffff;
             font-weight: 900;
             font-size: 13px;
             display: none;
@@ -383,20 +348,20 @@
         }
 
         .item-text {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 600;
-            color: #ffffff;
+            color: #1e293b;
             word-break: break-word;
         }
 
         .item-card.completed .item-text {
             text-decoration: line-through;
-            color: #8892b0;
+            color: #94a3b8;
         }
 
         .badge {
-            padding: 4px 8px;
-            border-radius: 10px;
+            padding: 5px 10px;
+            border-radius: 12px;
             font-size: 0.75rem;
             font-weight: 700;
             white-space: nowrap;
@@ -409,24 +374,29 @@
         }
 
         .badge-person {
-            background: rgba(255, 209, 102, 0.15);
-            color: #ffd166;
-            border: 1px solid rgba(255, 209, 102, 0.4);
+            background: #fef3c7;
+            color: #d97706;
+            border: 1px solid #fde68a;
         }
 
         .badge-none {
-            background: rgba(255, 107, 107, 0.15);
-            color: #ff6b6b;
-            border: 1px solid rgba(255, 107, 107, 0.4);
+            background: #ffe4e6;
+            color: #e11d48;
+            border: 1px solid #fecdd3;
         }
 
         .btn-delete {
             background: none;
             border: none;
-            color: #ff6b6b;
+            color: #ef4444;
             font-size: 1.1rem;
             cursor: pointer;
             padding: 2px 4px;
+            opacity: 0.7;
+        }
+
+        .btn-delete:hover {
+            opacity: 1;
         }
 
         /* Modal styling for editing names */
@@ -436,8 +406,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(5px);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(6px);
             z-index: 100;
             display: flex;
             align-items: center;
@@ -454,22 +424,21 @@
         }
 
         .modal-body {
-            background: #0d233a;
-            border: 1px solid rgba(255, 209, 102, 0.3);
-            border-radius: 18px;
-            padding: 20px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 22px;
             width: 100%;
             max-width: 380px;
             display: flex;
             flex-direction: column;
             gap: 14px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
         }
 
         .modal-title {
             font-size: 1.1rem;
-            font-weight: 700;
-            color: #ffd166;
+            font-weight: 800;
+            color: #0083b0;
             text-align: center;
         }
 
@@ -481,19 +450,19 @@
         }
 
         .name-chip {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
             padding: 6px 12px;
             border-radius: 12px;
             font-size: 0.8rem;
-            color: #a8dadc;
+            color: #334155;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .name-chip:active {
-            background: #ffd166;
-            color: #050d1a;
+            background: #ffb703;
+            color: #ffffff;
         }
 
         .modal-actions {
@@ -505,7 +474,7 @@
         .btn-modal {
             flex: 1;
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             border: none;
             font-weight: 700;
             cursor: pointer;
@@ -514,51 +483,43 @@
 
         .btn-modal.save {
             background: #06d6a0;
-            color: #050d1a;
+            color: #ffffff;
         }
 
         .btn-modal.clear {
-            background: rgba(255, 107, 107, 0.2);
-            color: #ff6b6b;
-            border: 1px solid rgba(255, 107, 107, 0.3);
+            background: #ffe4e6;
+            color: #e11d48;
         }
 
         .btn-modal.cancel {
-            background: rgba(255, 255, 255, 0.1);
-            color: #a8dadc;
+            background: #f1f5f9;
+            color: #64748b;
         }
     </style>
 </head>
 <body>
 
-    <canvas id="night-canvas"></canvas>
+    <canvas id="winter-canvas"></canvas>
 
     <div class="container">
         <div class="header">
-            <h1>🔥 Поход на Кемпинг 🏕️</h1>
-            <p>Общий чек-лист группы</p>
+            <h1>🇮🇹 Италия Лыжи 2027 ⛷️</h1>
+            <p>Снег, Солнце & Aperol Spritz ☀️🍹</p>
             <div class="sync-badge">
                 <div class="sync-dot"></div>
                 <span id="syncStatus">Подключение к Firebase...</span>
             </div>
         </div>
 
-        <div class="camp-scene">
-            <div class="guitar-wrap">🎸</div>
-            <div class="campfire">
-                <div class="logs">
-                    <div class="log l1"></div>
-                    <div class="log l2"></div>
-                </div>
-                <div class="flame f1"></div>
-                <div class="flame f2"></div>
-                <div class="flame f3"></div>
-            </div>
+        <div class="ski-scene">
+            <div class="sun-wrap" title="Альпийское солнце!">☀️</div>
+            <div class="snowman" title="Привет из Доломитов!">☃️🕶️</div>
+            <div class="flag-italy">🇮🇹</div>
         </div>
 
         <div class="card">
             <div class="input-box">
-                <input type="text" id="itemInput" placeholder="Что нужно взять?">
+                <input type="text" id="itemInput" placeholder="Что нужно взять на лыжи?">
                 <div class="input-row">
                     <input type="text" id="nameInput" placeholder="Кто берет?">
                     <button class="btn-add" onclick="addItem()">+ Добавить</button>
@@ -567,7 +528,7 @@
 
             <div class="progress-box">
                 <div class="progress-info">
-                    <span>Собрано вещей:</span>
+                    <span>Готовность к поездке:</span>
                     <span id="progressText">0 / 0</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -576,9 +537,9 @@
             </div>
 
             <div class="filter-tabs">
-                <div class="tab active" onclick="setFilter('all', this)">Все вещи</div>
+                <div class="tab active" onclick="setFilter('all', this)">Все снаряжение</div>
                 <div class="tab" onclick="setFilter('pending', this)">Нужно собрать</div>
-                <div class="tab" onclick="setFilter('done', this)">Уже собрано</div>
+                <div class="tab" onclick="setFilter('done', this)">Уже упаковано</div>
             </div>
 
             <ul class="item-list" id="itemList"></ul>
@@ -590,7 +551,7 @@
         <div class="modal-body">
             <div class="modal-title" id="modalItemTitle">Назначить ответственного</div>
             
-            <div style="font-size: 0.8rem; color: #a8dadc; text-align: center;">Быстрый выбор участника:</div>
+            <div style="font-size: 0.8rem; color: #64748b; text-align: center;">Быстрый выбор участника:</div>
             <div class="quick-names">
                 <span class="name-chip" onclick="selectQuickName('Вова')">Вова</span>
                 <span class="name-chip" onclick="selectQuickName('Верон')">Верон</span>
@@ -601,8 +562,8 @@
                 <span class="name-chip" onclick="selectQuickName('Маша')">Маша</span>
             </div>
 
-            <div style="font-size: 0.8rem; color: #a8dadc; text-align: center; margin-top: 4px;">Или добавьте / измените имя:</div>
-            <input type="text" id="modalNameInput" placeholder="Имя (например: Вова + Леша)">
+            <div style="font-size: 0.8rem; color: #64748b; text-align: center; margin-top: 4px;">Или введите имя:</div>
+            <input type="text" id="modalNameInput" placeholder="Имя участника">
 
             <div class="modal-actions">
                 <button class="btn-modal clear" onclick="clearName()">Сбросить</button>
@@ -617,8 +578,8 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <script>
-        // Canvas Animation
-        const canvas = document.getElementById('night-canvas');
+        // Interactive Canvas Snow & Sunbeams
+        const canvas = document.getElementById('winter-canvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
@@ -628,52 +589,39 @@
             height = canvas.height = window.innerHeight;
         });
 
-        const stars = [];
-        for (let i = 0; i < 50; i++) {
-            stars.push({ x: Math.random() * width, y: Math.random() * height * 0.7, size: Math.random() * 1.5, alpha: Math.random() });
-        }
-
-        const fireflies = [];
-        for (let i = 0; i < 30; i++) {
-            fireflies.push({
+        const snowflakes = [];
+        for (let i = 0; i < 70; i++) {
+            snowflakes.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                radius: Math.random() * 2 + 1,
-                vx: (Math.random() - 0.5) * 0.6,
-                vy: (Math.random() - 0.5) * 0.6,
-                alpha: Math.random(),
-                pulse: Math.random() * 0.03 + 0.01
+                r: Math.random() * 3 + 1,
+                d: Math.random() * 1,
+                opacity: Math.random() * 0.8 + 0.2
             });
         }
 
-        function drawNight() {
+        function drawWinterEffect() {
             ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = '#ffffff';
-            stars.forEach(s => {
-                ctx.globalAlpha = s.alpha;
-                ctx.fillRect(s.x, s.y, s.size, s.size);
-            });
 
-            fireflies.forEach(f => {
-                f.x += f.vx;
-                f.y += f.vy;
-                if (f.x < 0 || f.x > width) f.vx *= -1;
-                if (f.y < 0 || f.y > height) f.vy *= -1;
-                f.alpha += f.pulse;
-                if (f.alpha > 1 || f.alpha < 0.2) f.pulse *= -1;
+            // Falling snow
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+            ctx.beginPath();
+            snowflakes.forEach(p => {
+                ctx.moveTo(p.x, p.y);
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+                
+                p.y += Math.cos(p.d) + 1 + p.r / 2;
+                p.x += Math.sin(p.d) * 0.5;
 
-                ctx.globalAlpha = Math.max(0, Math.min(1, f.alpha));
-                ctx.beginPath();
-                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-                ctx.fillStyle = '#ffd166';
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = '#ffd166';
-                ctx.fill();
-                ctx.shadowBlur = 0;
+                if (p.x > width + 5 || p.x < -5 || p.y > height) {
+                    p.x = Math.random() * width;
+                    p.y = -10;
+                }
             });
-            requestAnimationFrame(drawNight);
+            ctx.fill();
+            requestAnimationFrame(drawWinterEffect);
         }
-        drawNight();
+        drawWinterEffect();
 
         // --- FIREBASE CONFIGURATION ---
         const firebaseConfig = {
@@ -687,60 +635,64 @@
             measurementId: "G-9P04VB75SP"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        // Default list tailored for Italian Ski Trip
         const defaultItems = [
-            { text: "Зарядная станция от Темы", takenBy: "Вова", done: false },
-            { text: "Походная плита", takenBy: "Верон", done: false },
-            { text: "Wasserkocher для каши", takenBy: "Витя", done: false },
-            { text: "Гриль кастрюля", takenBy: "Аня", done: false },
-            { text: "Гриль чемодан", takenBy: "Витя", done: false },
-            { text: "Гитара", takenBy: "Леша / Вова", done: false },
-            { text: "Походная посуда", takenBy: "Каждый сам себе", done: false },
-            { text: "Сковородка", takenBy: "", done: false },
-            { text: "Кастрюля маленькая", takenBy: "", done: false },
-            { text: "Küchenrollen", takenBy: "", done: false },
-            { text: "Müllsäcke", takenBy: "", done: false },
-            { text: "Чай", takenBy: "", done: false },
-            { text: "Кофе", takenBy: "", done: false },
-            { text: "Молоко / сливки", takenBy: "", done: false },
-            { text: "Хлеб", takenBy: "", done: false },
-            { text: "Помидоры", takenBy: "", done: false },
-            { text: "Огурцы", takenBy: "", done: false },
-            { text: "Оливки", takenBy: "", done: false },
-            { text: "Сметана", takenBy: "", done: false },
-            { text: "Мясо для гриля (на 2 вечера)", takenBy: "", done: false },
-            { text: "Колбаса", takenBy: "", done: false },
-            { text: "Сыр", takenBy: "", done: false },
-            { text: "Маргарин / масло", takenBy: "", done: false },
-            { text: "Бухло / пиво", takenBy: "", done: false },
-            { text: "Кола", takenBy: "", done: false },
-            { text: "Семечки", takenBy: "", done: false },
-            { text: "Вода", takenBy: "", done: false },
-            { text: "Пачка макарон или 2 кг картошки", takenBy: "", done: false },
-            { text: "Угли", takenBy: "", done: false }
+            { text: "Горнолыжная куртка и штаны", takenBy: "Каждый сам", done: false },
+            { text: "Термобелье (2 комплекта)", takenBy: "", done: false },
+            { text: "Горнолыжная маска / очки", takenBy: "", done: false },
+            { text: "Шлем горнолыжный", takenBy: "", done: false },
+            { text: "Перчатки / Варежки (непромокаемые)", takenBy: "", done: false },
+            { text: "Солнцезащитный крем SPF 50", takenBy: "", done: false },
+            { text: "Гигиеническая помада от мороза", takenBy: "", done: false },
+            { text: "Сушилка для ботинок", takenBy: "Вова", done: false },
+            { text: "Горнолыжные носки (3 пары)", takenBy: "", done: false },
+            { text: "Скипасс / Документы / Страховка", takenBy: "Каждый сам", done: false },
+            { text: "Купальник / Плавки (для SPA и терм)", takenBy: "", done: false },
+            { text: "Апре-ски свитера / Наряды", takenBy: "", done: false },
+            { text: "Балаклава / Гейтер на шею", takenBy: "", done: false },
+            { text: "Защита спины / шорты", takenBy: "", done: false },
+            { text: "Евроадаптеры и Пауэрбанки", takenBy: "Витя", done: false },
+            { text: "Настолки для вечеров", takenBy: "Аня", done: false },
+            { text: "Бюджет на Aperol Spritz 🍹", takenBy: "Все", done: false }
         ];
 
         let items = defaultItems;
         let currentFilter = 'all';
         let editingIndex = null;
 
-        // Real-time synchronization listener
-        db.ref('camping_checklist').on('value', (snapshot) => {
+        // Auto-sorting: Done (1) -> Assigned (2) -> Open (3)
+        function sortItems() {
+            items.sort((a, b) => {
+                const getPriority = (item) => {
+                    if (item.done) return 1;
+                    if (item.takenBy && item.takenBy.trim() !== '') return 2;
+                    return 3;
+                };
+                return getPriority(a) - getPriority(b);
+            });
+        }
+
+        // Firebase node: 'italy_ski_checklist'
+        db.ref('italy_ski_checklist').on('value', (snapshot) => {
             const data = snapshot.val();
             if (data) {
                 items = data;
+                sortItems();
                 renderItems();
             } else {
-                db.ref('camping_checklist').set(defaultItems);
+                items = defaultItems;
+                sortItems();
+                db.ref('italy_ski_checklist').set(items);
             }
             document.getElementById('syncStatus').innerText = "Онлайн (Синхронизировано)";
         });
 
         function saveState() {
-            db.ref('camping_checklist').set(items);
+            sortItems();
+            db.ref('italy_ski_checklist').set(items);
             renderItems();
         }
 
@@ -760,18 +712,9 @@
 
                 const badge = item.takenBy 
                     ? `<span class="badge badge-person" onclick="openModal(${index})">👤 ${item.takenBy}</span>`
-                    : `<span class="badge badge-none" onclick="openModal(${index})">❓ Назначить</span>`;
-
-                const showReorder = currentFilter === 'all';
-                const reorderHTML = showReorder ? `
-                    <div class="reorder-btns">
-                        <button class="btn-move" onclick="moveItem(${index}, -1)">▲</button>
-                        <button class="btn-move" onclick="moveItem(${index}, 1)">▼</button>
-                    </div>
-                ` : '';
+                    : `<span class="badge badge-none" onclick="openModal(${index})">❓ Кто берет?</span>`;
 
                 li.innerHTML = `
-                    ${reorderHTML}
                     <div class="item-left" onclick="toggleDone(${index})">
                         <div class="checkbox"></div>
                         <span class="item-text">${item.text}</span>
@@ -789,17 +732,6 @@
             const percent = total > 0 ? Math.round((completedCount / total) * 100) : 0;
             document.getElementById('progressText').innerText = `${completedCount} из ${total} (${percent}%)`;
             document.getElementById('progressFill').style.width = `${percent}%`;
-        }
-
-        function moveItem(index, direction) {
-            const targetIndex = index + direction;
-            if (targetIndex < 0 || targetIndex >= items.length) return;
-            
-            const temp = items[index];
-            items[index] = items[targetIndex];
-            items[targetIndex] = temp;
-            
-            saveState();
         }
 
         function addItem() {
