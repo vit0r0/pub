@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Летний Кемпинг 🏕️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #050d1a 0%, #0a192f 40%, #0d233a 70%, #152d24 100%);
+            background-attachment: fixed;
+            color: #f0f4f8;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px 12px 100px 12px;
+        }
+
+        /* Canvas for Fireflies & Night Sky */
+        #night-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 3rem;
+            color: #ffd166;
+            text-shadow: 0 0 15px rgba(255, 209, 102, 0.6), 0 0 30px rgba(255, 107, 107, 0.4);
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: #a8dadc;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        /* Campfire Art Animation */
+        .camp-scene {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 20px;
+            height: 120px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        /* Guitar Animation */
+        .guitar-wrap {
+            font-size: 3.5rem;
+            animation: guitarRock 3s infinite ease-in-out;
+            transform-origin: bottom center;
+            filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.3));
+        }
+
+        @keyframes guitarRock {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(8deg) translateY(-4px); }
+        }
+
+        /* Fire Animation */
+        .campfire {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .logs {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 16px;
+        }
+
+        .log {
+            position: absolute;
+            width: 50px;
+            height: 10px;
+            background: #5c3d2e;
+            border-radius: 5px;
+            border: 1px solid #3d2314;
+        }
+        .log.l1 { transform: rotate(15deg); left: 5px; }
+        .log.l2 { transform: rotate(-15deg); right: 5px; }
+
+        .flame {
+            position: absolute;
+            bottom: 10px;
+            border-radius: 50% 50% 20% 20%;
+            transform-origin: center bottom;
+            animation: flicker 0.15s infinite alternate ease-in-out;
+        }
+
+        .flame.f1 {
+            width: 44px;
+            height: 55px;
+            background: radial-gradient(circle, #ff4500 20%, #ff8c00 70%, transparent 100%);
+            box-shadow: 0 0 20px #ff4500, 0 0 40px #ff8c00;
+        }
+
+        .flame.f2 {
+            width: 28px;
+            height: 38px;
+            background: radial-gradient(circle, #ffe600 30%, #ff8c00 80%);
+            animation-duration: 0.1s;
+        }
+
+        .flame.f3 {
+            width: 14px;
+            height: 22px;
+            background: #ffffff;
+            animation-duration: 0.08s;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); opacity: 0.95; }
+            100% { transform: scale(1.08, 1.12) rotate(2deg); opacity: 1; }
+        }
+
+        /* Main Glass Card */
+        .card {
+            background: rgba(13, 35, 58, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 22px 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 1px rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* Add Item Section */
+        .input-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            background: rgba(10, 25, 47, 0.8);
+            color: #ffffff;
+            transition: all 0.25s ease;
+        }
+
+        input[type="text"]::placeholder {
+            color: #8892b0;
+        }
+
+        input[type="text"]:focus {
+            border-color: #ffd166;
+            box-shadow: 0 0 12px rgba(255, 209, 102, 0.25);
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #ff9f1c 0%, #ffbf69 100%);
+            color: #050d1a;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(255, 159, 28, 0.3);
+        }
+
+        .btn-add:active {
+            transform: scale(0.98);
+        }
+
+        /* Progress Bar Bar */
+        .progress-box {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffd166;
+        }
+
+        .progress-bar-bg {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff9f1c, #06d6a0);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 18px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+        }
+
+        .filter-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab {
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #a8dadc;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            background: #ffd166;
+            color: #050d1a;
+            border-color: #ffd166;
+        }
+
+        /* Items List */
+        .item-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .item-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .item-card:active {
+            transform: scale(0.99);
+        }
+
+        .item-card.completed {
+            background: rgba(6, 214, 160, 0.08);
+            border-color: rgba(6, 214, 160, 0.25);
+            opacity: 0.65;
+        }
+
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #ffd166;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .item-card.completed .checkbox {
+            background: #06d6a0;
+            border-color: #06d6a0;
+        }
+
+        .checkbox::after {
+            content: '✓';
+            color: #050d1a;
+            font-weight: 900;
+            font-size: 14px;
+            display: none;
+        }
+
+        .item-card.completed .checkbox::after {
+            display: block;
+        }
+
+        .item-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            word-break: break-word;
+        }
+
+        .item-card.completed .item-text {
+            text-decoration: line-through;
+            color: #8892b0;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .badge-person {
+            background: rgba(255, 209, 102, 0.15);
+            color: #ffd166;
+            border: 1px solid rgba(255, 209, 102, 0.3);
+        }
+
+        .badge-none {
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-delete {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 8px;
+            line-height: 1;
+            opacity: 0.7;
+        }
+
+        .btn-delete:active {
+            opacity: 1;
+            background: rgba(255, 107, 107, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="night-canvas"></canvas>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🔥 Поход на Кемпинг 🏕️</h1>
+            <p>Чек-лист снаряжения и продуктов</p>
+        </div>
+
+        <!-- Animated Campfire Scene -->
+        <div class="camp-scene">
+            <div class="guitar-wrap">🎸</div>
+            <div class="campfire">
+                <div class="logs">
+                    <div class="log l1"></div>
+                    <div class="log l2"></div>
+                </div>
+                <div class="flame f1"></div>
+                <div class="flame f2"></div>
+                <div class="flame f3"></div>
+            </div>
+        </div>
+
+        <!-- Main Card -->
+        <div class="card">
+            <!-- Add Item Form -->
+            <div class="input-box">
+                <input type="text" id="itemInput" placeholder="Что нужно взять? (напр. Спички)">
+                <div class="input-row">
+                    <input type="text" id="nameInput" placeholder="Кто берет? (напр. Вова)">
+                    <button class="btn-add" onclick="addItem()">+ Добавить</button>
+                </div>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-box">
+                <div class="progress-info">
+                    <span>Собрано вещей:</span>
+                    <span id="progressText">0 / 0</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <div class="tab active" onclick="setFilter('all', this)">Все вещи</div>
+                <div class="tab" onclick="setFilter('pending', this)">Нужно собрать</div>
+                <div class="tab" onclick="setFilter('done', this)">Уже собрано</div>
+            </div>
+
+            <!-- Items List -->
+            <ul class="item-list" id="itemList"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Fireflies & Stars Canvas
+        const canvas = document.getElementById('night-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // Stars
+        const stars = [];
+        for (let i = 0; i < 60; i++) {
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height * 0.7,
+                size: Math.random() * 1.5,
+                alpha: Math.random()
+            });
+        }
+
+        // Fireflies
+        const fireflies = [];
+        const fireflyCount = 35;
+
+        for (let i = 0; i < fireflyCount; i++) {
+            fireflies.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 2.5 + 1,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                alpha: Math.random(),
+                pulse: Math.random() * 0.03 + 0.01
+            });
+        }
+
+        function drawNight() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw Stars
+            ctx.fillStyle = '#ffffff';
+            stars.forEach(s => {
+                ctx.globalAlpha = s.alpha;
+                ctx.fillRect(s.x, s.y, s.size, s.size);
+            });
+
+            // Draw Fireflies
+            fireflies.forEach(f => {
+                f.x += f.vx;
+                f.y += f.vy;
+
+                if (f.x < 0 || f.x > width) f.vx *= -1;
+                if (f.y < 0 || f.y > height) f.vy *= -1;
+
+                f.alpha += f.pulse;
+                if (f.alpha > 1 || f.alpha < 0.2) f.pulse *= -1;
+
+                ctx.globalAlpha = Math.max(0, Math.min(1, f.alpha));
+                ctx.beginPath();
+                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffd166';
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = '#ffd166';
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+
+            requestAnimationFrame(drawNight);
+        }
+        drawNight();
+
+        // Initial Data Array
+        const defaultItems = [
+            { text: "Зарядная станция от Темы", takenBy: "Вова", done: false },
+            { text: "Походная плита", takenBy: "Верон", done: false },
+            { text: "Wasserkocher для каши", takenBy: "Витя", done: false },
+            { text: "Гриль кастрюля", takenBy: "Аня", done: false },
+            { text: "Гриль чемодан", takenBy: "Витя", done: false },
+            { text: "Гитара", takenBy: "Леша / Вова", done: false },
+            { text: "Походная посуда", takenBy: "Каждый сам себе", done: false },
+            { text: "Сковородка", takenBy: "", done: false },
+            { text: "Кастрюля маленькая", takenBy: "", done: false },
+            { text: "Küchenrollen", takenBy: "", done: false },
+            { text: "Müllsäcke", takenBy: "", done: false },
+            { text: "Чай", takenBy: "", done: false },
+            { text: "Кофе", takenBy: "", done: false },
+            { text: "Молоко / сливки", takenBy: "", done: false },
+            { text: "Хлеб", takenBy: "", done: false },
+            { text: "Помидоры", takenBy: "", done: false },
+            { text: "Огурцы", takenBy: "", done: false },
+            { text: "Оливки", text_extra: "", takenBy: "", done: false },
+            { text: "Сметана", takenBy: "", done: false },
+            { text: "Мясо для гриля (на 2 вечера)", takenBy: "", done: false },
+            { text: "Колбаса", takenBy: "", done: false },
+            { text: "Сыр", takenBy: "", done: false },
+            { text: "Маргарин / масло", takenBy: "", done: false },
+            { text: "Бухло / пиво", takenBy: "", done: false },
+            { text: "Кола", takenBy: "", done: false },
+            { text: "Семечки", takenBy: "", done: false },
+            { text: "Вода", takenBy: "", done: false },
+            { text: "Пачка макарон или 2 кг картошки", takenBy: "", done: false },
+            { text: "Угли", takenBy: "", done: false }
+        ];
+
+        let items = JSON.parse(localStorage.getItem('camping_list_v2')) || defaultItems;
+        let currentFilter = 'all';
+
+        function renderItems() {
+            const list = document.getElementById('itemList');
+            list.innerHTML = '';
+
+            let completedCount = 0;
+
+            items.forEach((item, index) => {
+                if (item.done) completedCount++;
+
+                // Filter check
+                if (currentFilter === 'pending' && item.done) return;
+                if (currentFilter === 'done' && !item.done) return;
+
+                const li = document.createElement('li');
+                li.className = `item-card ${item.done ? 'completed' : ''}`;
+
+                const badge = item.takenBy 
+                    ? `<span class="badge badge-person">👤 ${item.takenBy}</span>`
+                    : `<span class="badge badge-none">❓ Кто берет?</span>`;
+
+                li.innerHTML = `
+                    <div class="item-left" onclick="toggleDone(${index})">
+                        <div class="checkbox"></div>
+                        <span class="item-text">${item.text}</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        ${badge}
+                        <button class="btn-delete" onclick="event.stopPropagation(); deleteItem(${index})">✕</button>
+                    </div>
+                `;
+
+                list.appendChild(li);
+            });
+
+            // Update Progress
+            const total = items.length;
+            const percent = total > 0 ? Math.round((completedCount / total) * 100) : 0;
+            document.getElementById('progressText').innerText = `${completedCount} из ${total} (${percent}%)`;
+            document.getElementById('progressFill').style.width = `${percent}%`;
+
+            localStorage.setItem('camping_list_v2', JSON.stringify(items));
+        }
+
+        function addItem() {
+            const itemInput = document.getElementById('itemInput');
+            const nameInput = document.getElementById('nameInput');
+
+            const itemText = itemInput.value.trim();
+            const nameText = nameInput.value.trim();
+
+            if (!itemText) return;
+
+            items.push({
+                text: itemText,
+                takenBy: nameText,
+                done: false
+            });
+
+            itemInput.value = '';
+            nameInput.value = '';
+            renderItems();
+        }
+
+        function toggleDone(index) {
+            items[index].done = !items[index].done;
+            renderItems();
+        }
+
+        function deleteItem(index) {
+            items.splice(index, 1);
+            renderItems();
+        }
+
+        function setFilter(filter, tabEl) {
+            currentFilter = filter;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            tabEl.classList.add('active');
+            renderItems();
+        }
+
+        renderItems();
+    </script>
+</body>
+</html>
