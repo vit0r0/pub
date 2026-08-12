@@ -110,9 +110,9 @@
         .sync-dot {
             width: 8px;
             height: 8px;
-            background-color: #06d6a0;
+            background-color: #0d9488;
             border-radius: 50%;
-            box-shadow: 0 0 8px #06d6a0;
+            box-shadow: 0 0 8px #0d9488;
             animation: pulse 1.5s infinite;
         }
 
@@ -125,7 +125,7 @@
         /* Mountain & Interactive Scene */
         .mountains-bg {
             width: 100%;
-            height: 110px;
+            height: 120px;
             margin-bottom: 15px;
             position: relative;
             display: flex;
@@ -140,7 +140,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            height: 80px;
+            height: 85px;
             background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
             clip-path: polygon(0% 100%, 15% 35%, 28% 70%, 45% 15%, 62% 65%, 80% 25%, 100% 100%);
             z-index: 1;
@@ -161,7 +161,7 @@
         }
 
         .sun-item {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             animation: sunPulse 3s infinite ease-in-out alternate;
             filter: drop-shadow(0 0 25px #ffb703);
         }
@@ -171,13 +171,31 @@
             100% { transform: scale(1.12) rotate(8deg); filter: drop-shadow(0 0 35px #ffb703); }
         }
 
-        .snowman-item {
-            animation: snowmanWobble 2.5s infinite ease-in-out;
+        /* Большой снеговик, чиллящий на солнышке */
+        .snowman-container {
+            position: relative;
+            z-index: 3;
+            transform: rotate(-15deg) translateY(-5px);
+            animation: snowmanChill 3s infinite ease-in-out alternate;
+            cursor: pointer;
         }
 
-        @keyframes snowmanWobble {
-            0%, 100% { transform: translateY(0) rotate(-3deg); }
-            50% { transform: translateY(-6px) rotate(3deg); }
+        .snowman-big {
+            font-size: 4.2rem;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.2));
+            display: inline-block;
+        }
+
+        .chill-accessories {
+            position: absolute;
+            bottom: 2px;
+            right: -8px;
+            font-size: 1.8rem;
+        }
+
+        @keyframes snowmanChill {
+            0% { transform: rotate(-18deg) translateY(-3px) scale(1); }
+            100% { transform: rotate(-12deg) translateY(-8px) scale(1.05); }
         }
 
         .pizza-item {
@@ -271,7 +289,7 @@
             justify-content: space-between;
             font-size: 0.85rem;
             font-weight: 800;
-            color: #0077b6;
+            color: #0d9488;
         }
 
         .progress-bar-bg {
@@ -284,7 +302,7 @@
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #ffb703, #06d6a0);
+            background: linear-gradient(90deg, #ffb703, #0d9488);
             border-radius: 10px;
             transition: width 0.4s ease;
         }
@@ -311,10 +329,10 @@
         }
 
         .tab.active {
-            background: #0083b0;
+            background: #0d9488;
             color: #ffffff;
-            border-color: #0083b0;
-            box-shadow: 0 3px 8px rgba(0, 131, 176, 0.3);
+            border-color: #0d9488;
+            box-shadow: 0 3px 8px rgba(13, 148, 136, 0.3);
         }
 
         .item-list {
@@ -337,10 +355,10 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
 
+        /* ВЫДЕЛЕНИЕ ГОТОВЫХ ПУНКТОВ БИРЮЗОВЫМ ЦВЕТОМ */
         .item-card.completed {
-            background: #f0fdf4;
-            border-color: #bbf7d0;
-            opacity: 0.75;
+            background: #ccfbf1;
+            border-color: #5eead4;
         }
 
         .item-left {
@@ -355,7 +373,7 @@
         .checkbox {
             width: 22px;
             height: 22px;
-            border: 2px solid #0083b0;
+            border: 2px solid #0d9488;
             border-radius: 6px;
             display: flex;
             align-items: center;
@@ -366,8 +384,8 @@
         }
 
         .item-card.completed .checkbox {
-            background: #06d6a0;
-            border-color: #06d6a0;
+            background: #0d9488;
+            border-color: #0d9488;
         }
 
         .checkbox::after {
@@ -391,7 +409,8 @@
 
         .item-card.completed .item-text {
             text-decoration: line-through;
-            color: #94a3b8;
+            color: #0f766e;
+            font-weight: 700;
         }
 
         .badge {
@@ -469,7 +488,7 @@
         .modal-title {
             font-size: 1.1rem;
             font-weight: 800;
-            color: #0083b0;
+            color: #0d9488;
             text-align: center;
         }
 
@@ -486,16 +505,16 @@
         .name-chip {
             background: #f1f5f9;
             border: 1px solid #cbd5e1;
-            padding: 6px 10px;
+            padding: 6px 12px;
             border-radius: 12px;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             color: #334155;
             cursor: pointer;
             font-weight: 700;
         }
 
         .name-chip:active {
-            background: #ffb703;
+            background: #0d9488;
             color: #ffffff;
         }
 
@@ -516,7 +535,7 @@
         }
 
         .btn-modal.save {
-            background: #06d6a0;
+            background: #0d9488;
             color: #ffffff;
         }
 
@@ -549,7 +568,13 @@
         <div class="mountains-bg">
             <div class="mountain-peaks"></div>
             <div class="scene-item sun-item" title="Яркое альпийское солнце!">☀️</div>
-            <div class="scene-item snowman-item" title="Снеговик Val Gardena!">☃️🕶️</div>
+            
+            <!-- Большой снеговик лежит в очках под солнцем -->
+            <div class="snowman-container" title="Снеговик чиллит на солнце! 🕶️🏖️">
+                <span class="snowman-big">☃️</span>
+                <span class="chill-accessories">🕶️🏖️</span>
+            </div>
+
             <div class="scene-item pizza-item" title="Итальянская пицца!">🍕</div>
             <div class="scene-item" title="Погнали на склон!">⛷️</div>
         </div>
@@ -590,16 +615,16 @@
             
             <div style="font-size: 0.8rem; color: #64748b; text-align: center;">Быстрый выбор участника:</div>
             <div class="quick-names">
-                <span class="name-chip" onclick="selectQuickName('Alexander')">Alexander</span>
-                <span class="name-chip" onclick="selectQuickName('Johann')">Johann</span>
-                <span class="name-chip" onclick="selectQuickName('Wladimir')">Wladimir</span>
-                <span class="name-chip" onclick="selectQuickName('Dmitro')">Dmitro</span>
-                <span class="name-chip" onclick="selectQuickName('Daniil')">Daniil</span>
-                <span class="name-chip" onclick="selectQuickName('Anna')">Anna</span>
-                <span class="name-chip" onclick="selectQuickName('Aleksej')">Aleksej</span>
-                <span class="name-chip" onclick="selectQuickName('Viktor')">Viktor</span>
-                <span class="name-chip" onclick="selectQuickName('Olena')">Olena</span>
-                <span class="name-chip" onclick="selectQuickName('Alex')">Alex</span>
+                <span class="name-chip" onclick="selectQuickName('Саша')">Саша</span>
+                <span class="name-chip" onclick="selectQuickName('Ваня')">Ваня</span>
+                <span class="name-chip" onclick="selectQuickName('Вова')">Вова</span>
+                <span class="name-chip" onclick="selectQuickName('Дима')">Дима</span>
+                <span class="name-chip" onclick="selectQuickName('Даня')">Даня</span>
+                <span class="name-chip" onclick="selectQuickName('Аня')">Аня</span>
+                <span class="name-chip" onclick="selectQuickName('Лёша')">Лёша</span>
+                <span class="name-chip" onclick="selectQuickName('Витя')">Витя</span>
+                <span class="name-chip" onclick="selectQuickName('Алёнка')">Алёнка</span>
+                <span class="name-chip" onclick="selectQuickName('Алекс')">Алекс</span>
             </div>
 
             <div style="font-size: 0.8rem; color: #64748b; text-align: center; margin-top: 4px;">Или введите имя:</div>
@@ -676,21 +701,52 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        // Полный начальный список с добавлением всех продуктов и вещей
         const defaultItems = [
+            // Экипировка и основные вещи
             { text: "Горнолыжная куртка и штаны", takenBy: "Каждый сам", done: false },
             { text: "Термобелье (2 комплекта)", takenBy: "", done: false },
             { text: "Горнолыжная маска / очки", takenBy: "", done: false },
             { text: "Шлем горнолыжный", takenBy: "", done: false },
             { text: "Перчатки (непромокаемые)", takenBy: "", done: false },
             { text: "Солнцезащитный крем SPF 50", takenBy: "", done: false },
-            { text: "Сушилка для ботинок", takenBy: "Alexander", done: false },
+            { text: "Сушилка для ботинок", takenBy: "Саша", done: false },
             { text: "Горнолыжные носки (3 пары)", takenBy: "", done: false },
             { text: "Скипасс / Документы / Страховка", takenBy: "Каждый сам", done: false },
             { text: "Купальник / Плавки (для SPA)", takenBy: "", done: false },
             { text: "Балаклава / Бафф на шею", takenBy: "", done: false },
-            { text: "Пауэрбанки и зарядки", takenBy: "Wladimir", done: false },
-            { text: "Настолки для вечеров", takenBy: "Anna", done: false },
-            { text: "Бюджет на пиццу и Aperol 🍕🍹", takenBy: "Все", done: false }
+            { text: "Пауэрбанки и зарядки", takenBy: "Витя", done: false },
+            { text: "Покер, карты", takenBy: "Аня", done: false },
+            { text: "Бюджет на пиццу и Aperol 🍕🍹", takenBy: "Все", done: false },
+
+            // Продукты и хозяйственные принадлежности из списка
+            { text: "Чай разный много", takenBy: "", done: false },
+            { text: "Кофе, Фильтры для кофе", takenBy: "", done: false },
+            { text: "Какао", takenBy: "", done: false },
+            { text: "Сахар, Соль, Перец, Приправы", takenBy: "", done: false },
+            { text: "Тряпки кухня, tabs für Spülmaschine 10", takenBy: "", done: false },
+            { text: "Макароны", takenBy: "", done: false },
+            { text: "Гречка", takenBy: "", done: false },
+            { text: "Рис", takenBy: "", done: false },
+            { text: "Тушенка 2–3 банки", takenBy: "", done: false },
+            { text: "Конфеты, печеньки", takenBy: "", done: false },
+            { text: "Растительное масло бутылка", takenBy: "", done: false },
+            { text: "Хреновина с Ани", takenBy: "", done: false },
+            { text: "Колбаса палка", takenBy: "", done: false },
+            { text: "Сыр голова", takenBy: "", done: false },
+            { text: "Масло мазательное 3 пачки", takenBy: "", done: false },
+            { text: "Яйца много штук", takenBy: "", done: false },
+            { text: "Булка хлеба", takenBy: "", done: false },
+            { text: "Мёд", takenBy: "", done: false },
+            { text: "Овсянка", takenBy: "", done: false },
+            { text: "Чеснок, лук", takenBy: "", done: false },
+            { text: "Сало", takenBy: "", done: false },
+            { text: "Ледовые пакетики", takenBy: "", done: false },
+            { text: "К пиву фисташки, орешки, рыбка", takenBy: "", done: false },
+            { text: "Пиво пару сисек", takenBy: "", done: false },
+            { text: "Яблоки", takenBy: "", done: false },
+            { text: "Мандарины", takenBy: "", done: false },
+            { text: "Кристалы/сауна", takenBy: "", done: false }
         ];
 
         let items = defaultItems;
