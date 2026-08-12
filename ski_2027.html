@@ -125,13 +125,13 @@
         /* Mountain & Interactive Scene */
         .mountains-bg {
             width: 100%;
-            height: 120px;
-            margin-bottom: 15px;
+            height: 170px;
+            margin-bottom: 10px;
             position: relative;
             display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            padding-bottom: 5px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
         }
 
         .mountain-peaks {
@@ -140,71 +140,87 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            height: 85px;
+            height: 90px;
             background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
             clip-path: polygon(0% 100%, 15% 35%, 28% 70%, 45% 15%, 62% 65%, 80% 25%, 100% 100%);
             z-index: 1;
             pointer-events: none;
         }
 
-        .scene-item {
-            font-size: 2.8rem;
+        /* Солнце над головой */
+        .sun-above {
+            font-size: 3.5rem;
             z-index: 2;
-            cursor: pointer;
-            user-select: none;
-            transition: transform 0.2s;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
-        }
-
-        .scene-item:active {
-            transform: scale(1.25) rotate(10deg);
-        }
-
-        .sun-item {
-            font-size: 3.8rem;
+            margin-bottom: -15px;
             animation: sunPulse 3s infinite ease-in-out alternate;
             filter: drop-shadow(0 0 25px #ffb703);
+            user-select: none;
         }
 
         @keyframes sunPulse {
             0% { transform: scale(1); filter: drop-shadow(0 0 20px #ffb703); }
-            100% { transform: scale(1.12) rotate(8deg); filter: drop-shadow(0 0 35px #ffb703); }
+            100% { transform: scale(1.1) rotate(6deg); filter: drop-shadow(0 0 35px #ffb703); }
         }
 
-        /* Большой снеговик, чиллящий на солнышке */
-        .snowman-container {
+        /* Композиция снеговика */
+        .hero-snowman-container {
             position: relative;
             z-index: 3;
-            transform: rotate(-15deg) translateY(-5px);
-            animation: snowmanChill 3s infinite ease-in-out alternate;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
             cursor: pointer;
+            transition: transform 0.2s;
         }
 
-        .snowman-big {
-            font-size: 4.2rem;
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.2));
+        .hero-snowman-container:active {
+            transform: scale(1.08);
+        }
+
+        .snowman-wrapper {
+            position: relative;
             display: inline-block;
+            line-height: 1;
         }
 
-        .chill-accessories {
+        .snowman-body {
+            font-size: 4.8rem;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.2));
+            display: block;
+        }
+
+        /* Очки на лице */
+        .glasses-overlay {
             position: absolute;
-            bottom: 2px;
-            right: -8px;
-            font-size: 1.8rem;
+            top: 24%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.1rem;
         }
 
-        @keyframes snowmanChill {
-            0% { transform: rotate(-18deg) translateY(-3px) scale(1); }
-            100% { transform: rotate(-12deg) translateY(-8px) scale(1.05); }
+        /* Пицца в руке */
+        .pizza-hand {
+            position: absolute;
+            top: 36%;
+            right: -24px;
+            font-size: 2.5rem;
+            transform: rotate(15deg);
+            animation: pizzaWiggle 2s infinite ease-in-out;
         }
 
-        .pizza-item {
-            animation: pizzaFloat 2s infinite ease-in-out;
+        @keyframes pizzaWiggle {
+            0%, 100% { transform: rotate(15deg) translateY(0); }
+            50% { transform: rotate(25deg) translateY(-4px); }
         }
 
-        @keyframes pizzaFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        /* Лыжи под снеговиком */
+        .skis-under {
+            font-size: 2.8rem;
+            margin-top: -22px;
+            letter-spacing: -6px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
         }
 
         .card {
@@ -355,7 +371,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
 
-        /* ВЫДЕЛЕНИЕ ГОТОВЫХ ПУНКТОВ БИРЮЗОВЫМ ЦВЕТОМ */
+        /* Выделение готовых пунктов бирюзовым цветом */
         .item-card.completed {
             background: #ccfbf1;
             border-color: #5eead4;
@@ -567,16 +583,19 @@
 
         <div class="mountains-bg">
             <div class="mountain-peaks"></div>
-            <div class="scene-item sun-item" title="Яркое альпийское солнце!">☀️</div>
             
-            <!-- Большой снеговик лежит в очках под солнцем -->
-            <div class="snowman-container" title="Снеговик чиллит на солнце! 🕶️🏖️">
-                <span class="snowman-big">☃️</span>
-                <span class="chill-accessories">🕶️🏖️</span>
-            </div>
+            <!-- Солнце над головой -->
+            <div class="sun-above">☀️</div>
 
-            <div class="scene-item pizza-item" title="Итальянская пицца!">🍕</div>
-            <div class="scene-item" title="Погнали на склон!">⛷️</div>
+            <!-- Большой снеговик в очках на лыжах с пиццей в руке -->
+            <div class="hero-snowman-container">
+                <div class="snowman-wrapper">
+                    <span class="snowman-body">☃️</span>
+                    <span class="glasses-overlay">🕶️</span>
+                    <span class="pizza-hand">🍕</span>
+                </div>
+                <div class="skis-under">⛷️</div>
+            </div>
         </div>
 
         <div class="card">
@@ -686,7 +705,7 @@
         }
         drawWinterEffect();
 
-        // --- NEW FIREBASE CONFIGURATION (SKI-DB) ---
+        // --- FIREBASE CONFIGURATION (SKI-DB) ---
         const firebaseConfig = {
             apiKey: "AIzaSyC6qT5vyGXr48TwGwa76ev65UjDZ5nWn54",
             authDomain: "camping-2027.firebaseapp.com",
@@ -701,9 +720,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // Полный начальный список с добавлением всех продуктов и вещей
         const defaultItems = [
-            // Экипировка и основные вещи
             { text: "Горнолыжная куртка и штаны", takenBy: "Каждый сам", done: false },
             { text: "Термобелье (2 комплекта)", takenBy: "", done: false },
             { text: "Горнолыжная маска / очки", takenBy: "", done: false },
@@ -718,8 +735,6 @@
             { text: "Пауэрбанки и зарядки", takenBy: "Витя", done: false },
             { text: "Покер, карты", takenBy: "Аня", done: false },
             { text: "Бюджет на пиццу и Aperol 🍕🍹", takenBy: "Все", done: false },
-
-            // Продукты и хозяйственные принадлежности из списка
             { text: "Чай разный много", takenBy: "", done: false },
             { text: "Кофе, Фильтры для кофе", takenBy: "", done: false },
             { text: "Какао", takenBy: "", done: false },
