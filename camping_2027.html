@@ -309,13 +309,40 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 8px;
         }
 
         .item-card.completed {
             background: rgba(6, 214, 160, 0.08);
             border-color: rgba(6, 214, 160, 0.25);
             opacity: 0.7;
+        }
+
+        .reorder-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .btn-move {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #a8dadc;
+            font-size: 0.65rem;
+            width: 20px;
+            height: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .btn-move:active {
+            background: #ffd166;
+            color: #050d1a;
         }
 
         .item-left {
@@ -570,6 +597,8 @@
                 <span class="name-chip" onclick="selectQuickName('Витя')">Витя</span>
                 <span class="name-chip" onclick="selectQuickName('Аня')">Аня</span>
                 <span class="name-chip" onclick="selectQuickName('Леша')">Леша</span>
+                <span class="name-chip" onclick="selectQuickName('Руся')">Руся</span>
+                <span class="name-chip" onclick="selectQuickName('Маша')">Маша</span>
             </div>
 
             <div style="font-size: 0.8rem; color: #a8dadc; text-align: center; margin-top: 4px;">Или добавьте / измените имя:</div>
@@ -733,7 +762,16 @@
                     ? `<span class="badge badge-person" onclick="openModal(${index})">👤 ${item.takenBy}</span>`
                     : `<span class="badge badge-none" onclick="openModal(${index})">❓ Назначить</span>`;
 
+                const showReorder = currentFilter === 'all';
+                const reorderHTML = showReorder ? `
+                    <div class="reorder-btns">
+                        <button class="btn-move" onclick="moveItem(${index}, -1)">▲</button>
+                        <button class="btn-move" onclick="moveItem(${index}, 1)">▼</button>
+                    </div>
+                ` : '';
+
                 li.innerHTML = `
+                    ${reorderHTML}
                     <div class="item-left" onclick="toggleDone(${index})">
                         <div class="checkbox"></div>
                         <span class="item-text">${item.text}</span>
@@ -751,6 +789,17 @@
             const percent = total > 0 ? Math.round((completedCount / total) * 100) : 0;
             document.getElementById('progressText').innerText = `${completedCount} из ${total} (${percent}%)`;
             document.getElementById('progressFill').style.width = `${percent}%`;
+        }
+
+        function moveItem(index, direction) {
+            const targetIndex = index + direction;
+            if (targetIndex < 0 || targetIndex >= items.length) return;
+            
+            const temp = items[index];
+            items[index] = items[targetIndex];
+            items[targetIndex] = temp;
+            
+            saveState();
         }
 
         function addItem() {
