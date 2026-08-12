@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зимний Поход — Чек-лист</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            background-attachment: fixed;
+            color: #2c3e50;
+            position: relative;
+            overflow-x: hidden;
+            padding: 40px 20px 80px 20px;
+        }
+
+        /* Canvas for Snowfall */
+        #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Container */
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Hero Header */
+        .hero {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .hero h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            color: #e0f7fa;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #b2ebf2;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        /* Card Frame */
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 35px 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* Form Controls */
+        .input-group {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr auto;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 600px) {
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        input[type="text"] {
+            padding: 14px 18px;
+            border: 2px solid #b0bec5;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0288d1;
+            box-shadow: 0 0 10px rgba(2, 136, 209, 0.2);
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #0288d1 0%, #01579b 100%);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(2, 136, 209, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 136, 209, 0.6);
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            background: #e1f5fe;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #0277bd;
+            font-size: 0.95rem;
+        }
+
+        /* Item List */
+        .item-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .item-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.4s ease-out;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .item-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .item-card.completed {
+            background: #f1f8e9;
+            border-color: #c8e6c9;
+            opacity: 0.85;
+        }
+
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+        }
+
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #0288d1;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            background: #fff;
+            flex-shrink: 0;
+        }
+
+        .item-card.completed .custom-checkbox {
+            background: #4caf50;
+            border-color: #4caf50;
+        }
+
+        .custom-checkbox::after {
+            content: '❄';
+            color: white;
+            font-size: 14px;
+            display: none;
+        }
+
+        .item-card.completed .custom-checkbox::after {
+            display: block;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #37474f;
+        }
+
+        .item-card.completed .item-title {
+            text-decoration: line-through;
+            color: #78909c;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-assigned {
+            background: #e0f7fa;
+            color: #00838f;
+            border: 1px solid #b2ebf2;
+        }
+
+        .badge-unassigned {
+            background: #fff3e0;
+            color: #e65100;
+            border: 1px solid #ffe0b2;
+        }
+
+        .btn-delete {
+            background: transparent;
+            border: none;
+            color: #ef5350;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            margin-left: 10px;
+        }
+
+        .btn-delete:hover {
+            background: #ffebee;
+        }
+
+        /* Animated Snowman Decor */
+        .snowman-stage {
+            position: fixed;
+            bottom: 0;
+            right: 40px;
+            z-index: 15;
+            pointer-events: none;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .snowman {
+            width: 140px;
+            height: 180px;
+            position: relative;
+            animation: sway 4s infinite ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .snow-body-bottom {
+            width: 110px;
+            height: 90px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #e0f7fa 80%, #b2ebf2);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 15px;
+            box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .snow-body-top {
+            width: 80px;
+            height: 70px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #e0f7fa 80%, #b2ebf2);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 70px;
+            left: 30px;
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
+        }
+
+        .snowman-head {
+            width: 60px;
+            height: 55px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #e0f7fa 80%, #b2ebf2);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 125px;
+            left: 40px;
+        }
+
+        /* Eyes & Nose */
+        .eye {
+            width: 6px;
+            height: 6px;
+            background: #263238;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+        }
+        .eye.left { left: 18px; }
+        .eye.right { right: 18px; }
+
+        .carrot {
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 20px solid #ff6d00;
+            position: absolute;
+            top: 24px;
+            left: 28px;
+            transform: rotate(-5deg);
+        }
+
+        .scarf {
+            width: 50px;
+            height: 12px;
+            background: #d32f2f;
+            position: absolute;
+            bottom: 122px;
+            left: 45px;
+            border-radius: 6px;
+            z-index: 2;
+        }
+
+        .scarf-tail {
+            width: 12px;
+            height: 30px;
+            background: #d32f2f;
+            position: absolute;
+            bottom: 100px;
+            left: 75px;
+            border-radius: 4px;
+            transform: rotate(15deg);
+            z-index: 1;
+        }
+
+        .hat {
+            width: 40px;
+            height: 25px;
+            background: #212121;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            border-radius: 4px 4px 0 0;
+        }
+        .hat::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            width: 60px;
+            height: 6px;
+            background: #212121;
+            border-radius: 3px;
+        }
+
+        /* Arm animation */
+        .arm {
+            width: 40px;
+            height: 4px;
+            background: #5d4037;
+            position: absolute;
+            top: 85px;
+        }
+        .arm.left {
+            left: -5px;
+            transform: rotate(25deg);
+        }
+        .arm.right {
+            right: -5px;
+            transform: rotate(-30deg);
+            animation: wave 2s infinite ease-in-out;
+            transform-origin: left center;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(-30deg); }
+            50% { transform: rotate(-50deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="snow-canvas"></canvas>
+
+    <div class="container">
+        <div class="hero">
+            <h1>☃️ Зимний Поход 🏔️</h1>
+            <p>Отмечайте вещи, которые берете с собой в морозное путешествие!</p>
+        </div>
+
+        <div class="card">
+            <div class="input-group">
+                <input type="text" id="itemInput" placeholder="Что нужно взять? (напр. Термос)">
+                <input type="text" id="nameInput" placeholder="Кто берет?">
+                <button class="btn-add" onclick="addItem()">
+                    <span>+ Добавить</span>
+                </button>
+            </div>
+
+            <div class="status-bar">
+                <span id="progressText">Собрано: 0 из 0</span>
+                <span>❄️ Приятного походения!</span>
+            </div>
+
+            <ul class="item-list" id="itemList"></ul>
+        </div>
+    </div>
+
+    <!-- Animated Snowman -->
+    <div class="snowman-stage">
+        <div class="snowman">
+            <div class="snow-body-bottom"></div>
+            <div class="snow-body-top">
+                <div class="arm left"></div>
+                <div class="arm right"></div>
+            </div>
+            <div class="scarf"></div>
+            <div class="scarf-tail"></div>
+            <div class="snowman-head">
+                <div class="hat"></div>
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="carrot"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Snow Effect Animation
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const flakes = [];
+        const flakeCount = 100;
+
+        for (let i = 0; i < flakeCount; i++) {
+            flakes.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 3 + 1,
+                density: Math.random() * 1,
+                opacity: Math.random() * 0.7 + 0.3
+            });
+        }
+
+        function drawSnow() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+            ctx.beginPath();
+            
+            for (let i = 0; i < flakeCount; i++) {
+                const f = flakes[i];
+                ctx.moveTo(f.x, f.y);
+                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2, true);
+            }
+            ctx.fill();
+            updateSnow();
+        }
+
+        let angle = 0;
+        function updateSnow() {
+            angle += 0.01;
+            for (let i = 0; i < flakeCount; i++) {
+                const f = flakes[i];
+                f.y += Math.cos(angle + f.density) + 1 + f.radius / 2;
+                f.x += Math.sin(angle) * 1;
+
+                if (f.y > height) {
+                    flakes[i] = {
+                        x: Math.random() * width,
+                        y: 0,
+                        radius: f.radius,
+                        density: f.density,
+                        opacity: f.opacity
+                    };
+                }
+            }
+        }
+
+        function animateSnow() {
+            drawSnow();
+            requestAnimationFrame(animateSnow);
+        }
+        animateSnow();
+
+        // Checklist Logic
+        let items = JSON.parse(localStorage.getItem('winter_camping_items')) || [
+            { text: "Палатка зимняя (двухслойная)", takenBy: "Алексей", done: true },
+            { text: "Термос с горячим чаем (2 л)", takenBy: "Маша", done: false },
+            { text: "Спальник (-15°C)", takenBy: "Иван", done: true },
+            { text: "Топор и сухое горючее", takenBy: "", done: false },
+            { text: "Туристический коврик (каремат)", takenBy: "Ольга", done: false },
+            { text: "Аптечка и грелки для ног", takenBy: "Дмитрий", done: true }
+        ];
+
+        function renderItems() {
+            const list = document.getElementById('itemList');
+            list.innerHTML = '';
+
+            let completedCount = 0;
+
+            items.forEach((item, index) => {
+                if (item.done) completedCount++;
+
+                const li = document.createElement('li');
+                li.className = `item-card ${item.done ? 'completed' : ''}`;
+
+                const badge = item.takenBy 
+                    ? `<span class="badge badge-assigned">👤 ${item.takenBy}</span>` 
+                    : `<span class="badge badge-unassigned">❓ Свободно</span>`;
+
+                li.innerHTML = `
+                    <div class="item-left" onclick="toggleDone(${index})">
+                        <div class="custom-checkbox"></div>
+                        <span class="item-title">${item.text}</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        ${badge}
+                        <button class="btn-delete" onclick="event.stopPropagation(); deleteItem(${index})" title="Удалить">✕</button>
+                    </div>
+                `;
+
+                list.appendChild(li);
+            });
+
+            document.getElementById('progressText').innerText = `Собрано: ${completedCount} из ${items.length}`;
+            localStorage.setItem('winter_camping_items', JSON.stringify(items));
+        }
+
+        function addItem() {
+            const itemInput = document.getElementById('itemInput');
+            const nameInput = document.getElementById('nameInput');
+
+            const itemText = itemInput.value.trim();
+            const nameText = nameInput.value.trim();
+
+            if (!itemText) return;
+
+            items.push({
+                text: itemText,
+                takenBy: nameText,
+                done: nameText !== ''
+            });
+
+            itemInput.value = '';
+            nameInput.value = '';
+            renderItems();
+        }
+
+        function toggleDone(index) {
+            items[index].done = !items[index].done;
+            renderItems();
+        }
+
+        function deleteItem(index) {
+            items.splice(index, 1);
+            renderItems();
+        }
+
+        document.getElementById('itemInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addItem();
+        });
+        document.getElementById('nameInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addItem();
+        });
+
+        renderItems();
+    </script>
+</body>
+</html>
