@@ -46,7 +46,7 @@
         .header {
             text-align: center;
             margin-top: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .header h1 {
@@ -59,10 +59,39 @@
         }
 
         .header p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #a8dadc;
             margin-top: 6px;
             font-weight: 600;
+        }
+
+        .sync-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(6, 214, 160, 0.15);
+            border: 1px solid rgba(6, 214, 160, 0.4);
+            color: #06d6a0;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 8px;
+            font-weight: 700;
+        }
+
+        .sync-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #06d6a0;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #06d6a0;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.4; transform: scale(0.9); }
         }
 
         .camp-scene {
@@ -70,7 +99,7 @@
             justify-content: center;
             align-items: flex-end;
             gap: 20px;
-            height: 90px;
+            height: 80px;
             margin-bottom: 20px;
             position: relative;
         }
@@ -480,7 +509,11 @@
     <div class="container">
         <div class="header">
             <h1>🔥 Поход на Кемпинг 🏕️</h1>
-            <p>Чек-лист с быстрой сменой ответственных</p>
+            <p>Общий чек-лист группы</p>
+            <div class="sync-badge">
+                <div class="sync-dot"></div>
+                <span id="syncStatus">Подключение к Firebase...</span>
+            </div>
         </div>
 
         <div class="camp-scene">
@@ -550,6 +583,10 @@
         </div>
     </div>
 
+    <!-- Firebase SDK (v9 Compat mode) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <script>
         // Canvas Animation
         const canvas = document.getElementById('night-canvas');
@@ -609,7 +646,22 @@
         }
         drawNight();
 
-        // Data & State
+        // --- FIREBASE CONFIGURATION ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyC6qT5vyGXr48TwGwa76ev65UjDZ5nWn54",
+            authDomain: "camping-2027.firebaseapp.com",
+            databaseURL: "https://camping-2027-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "camping-2027",
+            storageBucket: "camping-2027.firebasestorage.app",
+            messagingSenderId: "441053727767",
+            appId: "1:441053727767:web:61800e6a7d53a27182e052",
+            measurementId: "G-9P04VB75SP"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
         const defaultItems = [
             { text: "Зарядная станция от Темы", takenBy: "Вова", done: false },
             { text: "Походная плита", takenBy: "Верон", done: false },
@@ -642,9 +694,26 @@
             { text: "Угли", takenBy: "", done: false }
         ];
 
-        let items = JSON.parse(localStorage.getItem('camping_list_v3')) || defaultItems;
+        let items = defaultItems;
         let currentFilter = 'all';
         let editingIndex = null;
+
+        // Real-time synchronization listener
+        db.ref('camping_checklist').on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                items = data;
+                renderItems();
+            } else {
+                db.ref('camping_checklist').set(defaultItems);
+            }
+            document.getElementById('syncStatus').innerText = "Онлайн (Синхронизировано)";
+        });
+
+        function saveState() {
+            db.ref('camping_checklist').set(items);
+            renderItems();
+        }
 
         function renderItems() {
             const list = document.getElementById('itemList');
@@ -682,8 +751,6 @@
             const percent = total > 0 ? Math.round((completedCount / total) * 100) : 0;
             document.getElementById('progressText').innerText = `${completedCount} из ${total} (${percent}%)`;
             document.getElementById('progressFill').style.width = `${percent}%`;
-
-            localStorage.setItem('camping_list_v3', JSON.stringify(items));
         }
 
         function addItem() {
@@ -697,17 +764,17 @@
             items.push({ text: itemText, takenBy: nameText, done: false });
             itemInput.value = '';
             nameInput.value = '';
-            renderItems();
+            saveState();
         }
 
         function toggleDone(index) {
             items[index].done = !items[index].done;
-            renderItems();
+            saveState();
         }
 
         function deleteItem(index) {
             items.splice(index, 1);
-            renderItems();
+            saveState();
         }
 
         function setFilter(filter, tabEl) {
@@ -717,7 +784,7 @@
             renderItems();
         }
 
-        // Modal Functions for Name Editing
+        // Modal Functions
         function openModal(index) {
             editingIndex = index;
             const item = items[index];
@@ -735,7 +802,6 @@
             const input = document.getElementById('modalNameInput');
             const currentVal = input.value.trim();
             if (currentVal) {
-                // If name exists, offer to append or toggle
                 if (!currentVal.includes(name)) {
                     input.value = `${currentVal}, ${name}`;
                 }
@@ -748,7 +814,7 @@
             if (editingIndex !== null) {
                 const newName = document.getElementById('modalNameInput').value.trim();
                 items[editingIndex].takenBy = newName;
-                renderItems();
+                saveState();
             }
             closeModal();
         }
@@ -756,8 +822,6 @@
         function clearName() {
             document.getElementById('modalNameInput').value = '';
         }
-
-        renderItems();
     </script>
 </body>
 </html>
