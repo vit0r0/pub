@@ -402,27 +402,6 @@
             opacity: 0.7;
         }
 
-        .btn-reset {
-            margin-top: 15px;
-            background: transparent;
-            border: 1px dashed #94a3b8;
-            color: #64748b;
-            padding: 8px 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-            transition: all 0.2s;
-        }
-
-        .btn-reset:hover {
-            border-color: #e11d48;
-            color: #e11d48;
-            background: #ffe4e6;
-        }
-
         /* Modal styling */
         .modal-overlay {
             position: fixed;
@@ -677,8 +656,6 @@
             </div>
 
             <ul class="item-list" id="itemList"></ul>
-
-            <button class="btn-reset" onclick="resetToFullList()">Обновить до полного списка со всеми продуктами</button>
         </div>
     </div>
 
@@ -854,13 +831,6 @@
             sortItems();
             db.ref('val_gardena_checklist').set(items);
             renderItems();
-        }
-
-        function resetToFullList() {
-            if (confirm("Вы уверены, что хотите обновить список до полного набора с продуктами?")) {
-                items = JSON.parse(JSON.stringify(defaultItems));
-                saveState();
-            }
         }
 
         function renderItems() {
