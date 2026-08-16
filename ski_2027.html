@@ -18,8 +18,7 @@
         body {
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
-            /* Новый премиальный альпийский градиент заката */
-            background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 20%, #312e81 40%, #4338ca 65%, #0284c7 88%, #38bdf8 100%);
+            background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 25%, #2e1065 50%, #0284c7 85%, #38bdf8 100%);
             background-attachment: fixed;
             color: #1e293b;
             position: relative;
@@ -38,13 +37,13 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             position: relative;
             z-index: 10;
         }
 
-        /* --- НОВАЯ СТИЛЬНАЯ ШАПКА --- */
+        /* --- ШАПКА --- */
         .hero-header {
             text-align: center;
             padding-top: 10px;
@@ -94,7 +93,7 @@
             flex-wrap: wrap;
             gap: 6px;
             margin-top: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .pill {
@@ -138,124 +137,38 @@
             100% { opacity: 0.4; transform: scale(0.9); }
         }
 
-        /* --- СЦЕНА С БОЛЬШИМ ЛЕЖАЩИМ СНЕГОВИКОМ --- */
-        .chill-scene {
+        /* --- СЦЕНА С ОГРОМНЫМ SVG-СНЕГОВИКОМ ПОПЕРЕК ЭКРАНА --- */
+        .chill-scene-svg {
             position: relative;
             width: 100%;
-            height: 210px;
-            margin-top: 10px;
+            margin-top: 15px;
             margin-bottom: 5px;
             display: flex;
-            align-items: flex-end;
             justify-content: center;
-            user-select: none;
-        }
-
-        /* Сияющее солнце на заднем плане */
-        .hero-sun {
-            position: absolute;
-            top: 5px;
-            right: 15%;
-            font-size: 4rem;
-            filter: drop-shadow(0 0 35px #f59e0b);
-            animation: sunGlow 4s infinite ease-in-out alternate;
-            z-index: 1;
-        }
-
-        @keyframes sunGlow {
-            0% { transform: scale(1) rotate(0deg); }
-            100% { transform: scale(1.1) rotate(12deg); }
-        }
-
-        /* Горы на заднем плане */
-        .mountain-silhouette {
-            position: absolute;
-            bottom: 0;
-            width: 110%;
-            height: 100px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
-            clip-path: polygon(0% 100%, 10% 40%, 25% 85%, 45% 20%, 68% 75%, 85% 15%, 100% 100%);
-            z-index: 1;
-        }
-
-        /* Крупный Снеговик лежащий боком */
-        .lying-snowman-wrapper {
-            position: relative;
-            z-index: 5;
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            transform: rotate(-12deg) translateY(-10px); /* Поворот, чтобы лежал на боку */
-            transition: transform 0.3s ease;
-            cursor: pointer;
         }
 
-        .lying-snowman-wrapper:hover {
-            transform: rotate(-8deg) scale(1.05);
-        }
-
-        /* Тело лежащего снеговика */
-        .snowman-chill {
-            font-size: 6.5rem; /* Очень большой размер */
-            line-height: 1;
-            filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.4));
-            display: block;
-        }
-
-        /* Очки поверх снеговика */
-        .cool-sunglasses {
-            position: absolute;
-            top: 18%;
-            left: 28%;
-            font-size: 3rem;
-            transform: rotate(12deg);
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-        }
-
-        /* Пицца в руке */
-        .giant-pizza {
-            position: absolute;
-            top: -10px;
-            left: -35px;
-            font-size: 3.8rem;
-            transform: rotate(-25deg);
-            animation: pizzaFloat 2.5s infinite ease-in-out alternate;
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
-        }
-
-        @keyframes pizzaFloat {
-            0% { transform: rotate(-25deg) translateY(0); }
-            100% { transform: rotate(-15deg) translateY(-8px); }
-        }
-
-        /* Лыжи и Сноуборд под снеговиком */
-        .equipment-under {
-            position: absolute;
-            bottom: 5px;
-            z-index: 4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        .snowman-svg {
             width: 100%;
+            max-width: 580px;
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
         }
 
-        .ski-item, .board-item {
-            font-size: 3.2rem;
-            filter: drop-shadow(0 8px 10px rgba(0,0,0,0.4));
+        /* Анимация покачивания огромного снеговика */
+        .waving-snowman {
+            transform-origin: center bottom;
+            animation: gentleTilt 4s ease-in-out infinite alternate;
         }
 
-        .ski-item {
-            transform: rotate(-20deg) translateX(20px);
-        }
-
-        .board-item {
-            transform: rotate(15deg) translateX(-20px);
+        @keyframes gentleTilt {
+            0% { transform: rotate(-2deg); }
+            100% { transform: rotate(2deg); }
         }
 
         /* --- КАРТОЧКА И СПИСОК --- */
         .card {
-            background: rgba(255, 255, 255, 0.94);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border-radius: 28px;
@@ -596,7 +509,7 @@
     <canvas id="winter-canvas"></canvas>
 
     <div class="container">
-        <!-- СТИЛЬНАЯ НОВАЯ ШАПКА -->
+        <!-- ШАПКА -->
         <div class="hero-header">
             <div class="italia-badge">🇮🇹 Val Gardena • Italia</div>
             <h1 class="main-title">DOLOMITI <span class="year">2027</span></h1>
@@ -605,7 +518,7 @@
                 <span class="pill">🏔️ Альпы</span>
                 <span class="pill">🍕 Пицца</span>
                 <span class="pill">☀️ Солнце</span>
-                <span class="pill">⛷️ лыжи</span>
+                <span class="pill">⛷️ Лыжи</span>
                 <span class="pill">🏂 Сноуборд</span>
             </div>
 
@@ -615,23 +528,105 @@
             </div>
         </div>
 
-        <!-- ИНТЕРАКТИВНАЯ СЦЕНА С БОЛЬШИМ ЛЕЖАЩИМ СНЕГОВИКОМ -->
-        <div class="chill-scene">
-            <div class="hero-sun">☀️</div>
-            <div class="mountain-silhouette"></div>
+        <!-- СЦЕНА С ОГРОМНЫМ УЛЫБАЮЩИМСЯ СНЕГОВИКОМ ПОПЕРЕК ЭКРАНА -->
+        <div class="chill-scene-svg">
+            <svg class="snowman-svg waving-snowman" viewBox="0 0 600 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Сияющее Солнце -->
+                <circle cx="500" cy="50" r="32" fill="#FBBF24"/>
+                <g stroke="#FBBF24" stroke-width="5" stroke-linecap="round">
+                    <line x1="500" y1="6" x2="500" y2="0"/>
+                    <line x1="500" y1="94" x2="500" y2="100"/>
+                    <line x1="456" y1="50" x2="450" y2="50"/>
+                    <line x1="544" y1="50" x2="550" y2="50"/>
+                    <line x1="469" y1="19" x2="464" y2="14"/>
+                    <line x1="531" y1="81" x2="536" y2="86"/>
+                    <line x1="469" y1="81" x2="464" y2="86"/>
+                    <line x1="531" y1="19" x2="536" y2="14"/>
+                </g>
 
-            <!-- Лыжи и Сноуборд -->
-            <div class="equipment-under">
-                <span class="ski-item">⛷️</span>
-                <span class="board-item">🏂</span>
-            </div>
+                <!-- Горы на фоне -->
+                <polygon points="20,220 120,120 220,220" fill="rgba(255,255,255,0.12)"/>
+                <polygon points="150,220 290,90 410,220" fill="rgba(255,255,255,0.18)"/>
+                <polygon points="360,220 480,110 580,220" fill="rgba(255,255,255,0.1)"/>
 
-            <!-- Большой Снеговик "На чилле" лежит боком -->
-            <div class="lying-snowman-wrapper">
-                <span class="giant-pizza">🍕</span>
-                <span class="snowman-chill">☃️</span>
-                <span class="cool-sunglasses">🕶️</span>
-            </div>
+                <!-- ЛЫЖИ И СНОУБОРД (лежат под снеговиком) -->
+                <g transform="rotate(-6, 300, 190)">
+                    <!-- Сноуборд -->
+                    <rect x="80" y="195" width="440" height="18" rx="9" fill="#0284C7" stroke="#38BDF8" stroke-width="3" transform="rotate(4, 300, 204)"/>
+                    <!-- Лыжи -->
+                    <rect x="60" y="185" width="480" height="8" rx="4" fill="#E11D48" transform="rotate(-3, 300, 189)"/>
+                    <rect x="60" y="197" width="480" height="8" rx="4" fill="#F59E0B" transform="rotate(-1, 300, 201)"/>
+                </g>
+
+                <!-- ОГРОМНЫЙ СНЕГОВИК ПОПЕРЕК (ЛЕЖИТ НА БОКУ) -->
+                <g transform="translate(10, 20)">
+                    <!-- Нижная снежная часть (Справа) -->
+                    <circle cx="430" cy="140" r="65" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
+                    
+                    <!-- Средняя снежная часть (Центр) -->
+                    <circle cx="310" cy="135" r="55" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
+                    <!-- Пуговицы-угольки -->
+                    <circle cx="310" cy="110" r="5" fill="#1E293B"/>
+                    <circle cx="325" cy="135" r="5" fill="#1E293B"/>
+                    <circle cx="305" cy="155" r="5" fill="#1E293B"/>
+
+                    <!-- Голова (Слева) -->
+                    <circle cx="190" cy="125" r="48" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
+
+                    <!-- Румяные щечки -->
+                    <circle cx="160" cy="135" r="8" fill="#FCA5A5" opacity="0.6"/>
+                    <circle cx="215" cy="140" r="8" fill="#FCA5A5" opacity="0.6"/>
+
+                    <!-- ОГРОМНАЯ УЛЫБКА В СВЕТЕ -->
+                    <path d="M 165 140 Q 188 165 212 142" fill="none" stroke="#0F172A" stroke-width="5" stroke-linecap="round"/>
+
+                    <!-- Морковка (Носик) -->
+                    <polygon points="188,125 140,128 186,135" fill="#F97316"/>
+
+                    <!-- Крутые Солнцезащитные Очки -->
+                    <g transform="rotate(-5, 190, 110)">
+                        <rect x="155" y="100" width="32" height="20" rx="4" fill="#0F172A"/>
+                        <rect x="193" y="100" width="32" height="20" rx="4" fill="#0F172A"/>
+                        <line x1="187" y1="108" x2="193" y2="108" stroke="#0F172A" stroke-width="4"/>
+                        <!-- Блик на очках -->
+                        <line x1="160" y1="104" x2="172" y2="116" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="198" y1="104" x2="210" y2="116" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Шапка-цилиндр с итальянским шарфом -->
+                    <g transform="rotate(-15, 210, 80)">
+                        <rect x="190" y="65" width="60" height="8" rx="3" fill="#1E293B"/>
+                        <rect x="200" y="30" width="40" height="35" rx="4" fill="#1E293B"/>
+                        <rect x="200" y="57" width="40" height="8" fill="#E11D48"/>
+                    </g>
+
+                    <!-- Рука снеговика слева держит ПИЦЦУ -->
+                    <!-- Рука-веточка -->
+                    <path d="M 280 115 L 210 75 L 180 50" fill="none" stroke="#78350F" stroke-width="6" stroke-linecap="round"/>
+                    
+                    <!-- БОЛЬШОЙ КУСОК ПИЦЦЫ В РУКЕ -->
+                    <g transform="translate(110, 0) rotate(-10)">
+                        <!-- Корочка -->
+                        <path d="M 25 40 Q 65 30 105 45 L 65 120 Z" fill="#F59E0B" stroke="#D97706" stroke-width="3"/>
+                        <!-- Сыр -->
+                        <path d="M 30 45 Q 65 37 100 50 L 65 112 Z" fill="#FBBF24"/>
+                        <!-- Пепперони -->
+                        <circle cx="55" cy="60" r="7" fill="#DC2626"/>
+                        <circle cx="75" cy="75" r="8" fill="#DC2626"/>
+                        <circle cx="50" cy="80" r="6" fill="#DC2626"/>
+                        <circle cx="65" cy="98" r="5" fill="#DC2626"/>
+                    </g>
+                </g>
+
+                <!-- Градиент снега для шаров -->
+                <defs>
+                    <linearGradient id="snowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FFFFFF"/>
+                        <stop offset="85%" stop-color="#F1F5F9"/>
+                        <stop offset="100%" stop-color="#CBD5E1"/>
+                    </linearGradient>
+                </defs>
+            </svg>
         </div>
 
         <!-- КАРТОЧКА СПИСКА -->
