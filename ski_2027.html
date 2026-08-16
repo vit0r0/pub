@@ -137,12 +137,12 @@
             100% { opacity: 0.4; transform: scale(0.9); }
         }
 
-        /* --- СЦЕНА С ОГРОМНЫМ SVG-СНЕГОВИКОМ ПОПЕРЕК ЭКРАНА --- */
+        /* --- СЦЕНА С ВЕКТОРНЫМ СНЕГОВИКОМ ПОПЕРЕК ЭКРАНА --- */
         .chill-scene-svg {
             position: relative;
             width: 100%;
-            margin-top: 15px;
-            margin-bottom: 5px;
+            margin-top: 10px;
+            margin-bottom: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -150,20 +150,19 @@
 
         .snowman-svg {
             width: 100%;
-            max-width: 580px;
+            max-width: 600px;
             height: auto;
-            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
         }
 
-        /* Анимация покачивания огромного снеговика */
         .waving-snowman {
             transform-origin: center bottom;
             animation: gentleTilt 4s ease-in-out infinite alternate;
         }
 
         @keyframes gentleTilt {
-            0% { transform: rotate(-2deg); }
-            100% { transform: rotate(2deg); }
+            0% { transform: rotate(-1.5deg); }
+            100% { transform: rotate(1.5deg); }
         }
 
         /* --- КАРТОЧКА И СПИСОК --- */
@@ -403,7 +402,6 @@
             opacity: 0.7;
         }
 
-        /* Modal styling */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -528,97 +526,85 @@
             </div>
         </div>
 
-        <!-- СЦЕНА С ОГРОМНЫМ УЛЫБАЮЩИМСЯ СНЕГОВИКОМ ПОПЕРЕК ЭКРАНА -->
+        <!-- ВЕКТОРНЫЙ СНЕГОВИК ПОПЕРЕК ЭКРАНА (БЕЗ ПИЦЦЫ И ИКОНОК) -->
         <div class="chill-scene-svg">
-            <svg class="snowman-svg waving-snowman" viewBox="0 0 600 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Сияющее Солнце -->
-                <circle cx="500" cy="50" r="32" fill="#FBBF24"/>
+            <svg class="snowman-svg waving-snowman" viewBox="0 0 600 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Солнце -->
+                <circle cx="510" cy="55" r="30" fill="#FBBF24"/>
                 <g stroke="#FBBF24" stroke-width="5" stroke-linecap="round">
-                    <line x1="500" y1="6" x2="500" y2="0"/>
-                    <line x1="500" y1="94" x2="500" y2="100"/>
-                    <line x1="456" y1="50" x2="450" y2="50"/>
-                    <line x1="544" y1="50" x2="550" y2="50"/>
-                    <line x1="469" y1="19" x2="464" y2="14"/>
-                    <line x1="531" y1="81" x2="536" y2="86"/>
-                    <line x1="469" y1="81" x2="464" y2="86"/>
-                    <line x1="531" y1="19" x2="536" y2="14"/>
+                    <line x1="510" y1="12" x2="510" y2="5"/>
+                    <line x1="510" y1="98" x2="510" y2="105"/>
+                    <line x1="467" y1="55" x2="460" y2="55"/>
+                    <line x1="553" y1="55" x2="560" y2="55"/>
+                    <line x1="480" y1="25" x2="475" y2="20"/>
+                    <line x1="540" y1="85" x2="545" y2="90"/>
+                    <line x1="480" y1="85" x2="475" y2="90"/>
+                    <line x1="540" y1="25" x2="545" y2="20"/>
                 </g>
 
-                <!-- Горы на фоне -->
-                <polygon points="20,220 120,120 220,220" fill="rgba(255,255,255,0.12)"/>
-                <polygon points="150,220 290,90 410,220" fill="rgba(255,255,255,0.18)"/>
-                <polygon points="360,220 480,110 580,220" fill="rgba(255,255,255,0.1)"/>
+                <!-- Горы -->
+                <polygon points="10,210 110,110 210,210" fill="rgba(255,255,255,0.12)"/>
+                <polygon points="140,210 280,85 400,210" fill="rgba(255,255,255,0.18)"/>
+                <polygon points="350,210 470,100 570,210" fill="rgba(255,255,255,0.1)"/>
 
-                <!-- ЛЫЖИ И СНОУБОРД (лежат под снеговиком) -->
-                <g transform="rotate(-6, 300, 190)">
+                <!-- ЛЫЖИ И СНОУБОРД (Векторные, под снеговиком) -->
+                <g transform="translate(0, 10)">
                     <!-- Сноуборд -->
-                    <rect x="80" y="195" width="440" height="18" rx="9" fill="#0284C7" stroke="#38BDF8" stroke-width="3" transform="rotate(4, 300, 204)"/>
+                    <rect x="70" y="180" width="460" height="20" rx="10" fill="#0284C7" stroke="#38BDF8" stroke-width="3" transform="rotate(3, 300, 190)"/>
+                    <rect x="220" y="179" width="30" height="8" rx="2" fill="#0F172A" transform="rotate(3, 300, 190)"/>
+                    <rect x="350" y="186" width="30" height="8" rx="2" fill="#0F172A" transform="rotate(3, 300, 190)"/>
+                    
                     <!-- Лыжи -->
-                    <rect x="60" y="185" width="480" height="8" rx="4" fill="#E11D48" transform="rotate(-3, 300, 189)"/>
-                    <rect x="60" y="197" width="480" height="8" rx="4" fill="#F59E0B" transform="rotate(-1, 300, 201)"/>
+                    <rect x="50" y="168" width="500" height="9" rx="4" fill="#E11D48" transform="rotate(-3, 300, 172)"/>
+                    <rect x="50" y="181" width="500" height="9" rx="4" fill="#F59E0B" transform="rotate(-1, 300, 185)"/>
                 </g>
 
-                <!-- ОГРОМНЫЙ СНЕГОВИК ПОПЕРЕК (ЛЕЖИТ НА БОКУ) -->
-                <g transform="translate(10, 20)">
-                    <!-- Нижная снежная часть (Справа) -->
-                    <circle cx="430" cy="140" r="65" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
+                <!-- БОЛЬШОЙ СНЕГОВИК ПОПЕРЕК (ЛЕЖИТ БОКОМ И УЛЫБАЕТСЯ) -->
+                <g transform="translate(10, 10)">
+                    <!-- Основание (Справа) -->
+                    <circle cx="440" cy="135" r="62" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
                     
-                    <!-- Средняя снежная часть (Центр) -->
-                    <circle cx="310" cy="135" r="55" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
-                    <!-- Пуговицы-угольки -->
-                    <circle cx="310" cy="110" r="5" fill="#1E293B"/>
-                    <circle cx="325" cy="135" r="5" fill="#1E293B"/>
-                    <circle cx="305" cy="155" r="5" fill="#1E293B"/>
+                    <!-- Тело (Центр) -->
+                    <circle cx="315" cy="130" r="52" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
+                    <!-- Пуговицы -->
+                    <circle cx="315" cy="105" r="5" fill="#1E293B"/>
+                    <circle cx="330" cy="130" r="5" fill="#1E293B"/>
+                    <circle cx="310" cy="150" r="5" fill="#1E293B"/>
 
                     <!-- Голова (Слева) -->
-                    <circle cx="190" cy="125" r="48" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
+                    <circle cx="195" cy="120" r="46" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
 
-                    <!-- Румяные щечки -->
-                    <circle cx="160" cy="135" r="8" fill="#FCA5A5" opacity="0.6"/>
-                    <circle cx="215" cy="140" r="8" fill="#FCA5A5" opacity="0.6"/>
+                    <!-- Щеки -->
+                    <circle cx="165" cy="130" r="7" fill="#FCA5A5" opacity="0.6"/>
+                    <circle cx="220" cy="135" r="7" fill="#FCA5A5" opacity="0.6"/>
 
-                    <!-- ОГРОМНАЯ УЛЫБКА В СВЕТЕ -->
-                    <path d="M 165 140 Q 188 165 212 142" fill="none" stroke="#0F172A" stroke-width="5" stroke-linecap="round"/>
+                    <!-- Улыбка -->
+                    <path d="M 170 132 Q 192 158 215 134" fill="none" stroke="#0F172A" stroke-width="5" stroke-linecap="round"/>
 
-                    <!-- Морковка (Носик) -->
-                    <polygon points="188,125 140,128 186,135" fill="#F97316"/>
+                    <!-- Морковка -->
+                    <polygon points="193,120 142,122 191,130" fill="#F97316"/>
 
-                    <!-- Крутые Солнцезащитные Очки -->
-                    <g transform="rotate(-5, 190, 110)">
-                        <rect x="155" y="100" width="32" height="20" rx="4" fill="#0F172A"/>
-                        <rect x="193" y="100" width="32" height="20" rx="4" fill="#0F172A"/>
-                        <line x1="187" y1="108" x2="193" y2="108" stroke="#0F172A" stroke-width="4"/>
-                        <!-- Блик на очках -->
-                        <line x1="160" y1="104" x2="172" y2="116" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="198" y1="104" x2="210" y2="116" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Солнцезащитные Очки -->
+                    <g transform="rotate(-6, 195, 105)">
+                        <rect x="160" y="94" width="32" height="20" rx="5" fill="#0F172A"/>
+                        <rect x="198" y="94" width="32" height="20" rx="5" fill="#0F172A"/>
+                        <line x1="192" y1="102" x2="198" y2="102" stroke="#0F172A" stroke-width="4"/>
+                        <line x1="164" y1="98" x2="176" y2="110" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="202" y1="98" x2="214" y2="110" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
                     </g>
 
-                    <!-- Шапка-цилиндр с итальянским шарфом -->
-                    <g transform="rotate(-15, 210, 80)">
-                        <rect x="190" y="65" width="60" height="8" rx="3" fill="#1E293B"/>
-                        <rect x="200" y="30" width="40" height="35" rx="4" fill="#1E293B"/>
-                        <rect x="200" y="57" width="40" height="8" fill="#E11D48"/>
+                    <!-- Шапка-цилиндр -->
+                    <g transform="rotate(-15, 215, 75)">
+                        <rect x="195" y="60" width="60" height="8" rx="3" fill="#1E293B"/>
+                        <rect x="205" y="25" width="40" height="35" rx="4" fill="#1E293B"/>
+                        <rect x="205" y="52" width="40" height="8" fill="#E11D48"/>
                     </g>
 
-                    <!-- Рука снеговика слева держит ПИЦЦУ -->
-                    <!-- Рука-веточка -->
-                    <path d="M 280 115 L 210 75 L 180 50" fill="none" stroke="#78350F" stroke-width="6" stroke-linecap="round"/>
-                    
-                    <!-- БОЛЬШОЙ КУСОК ПИЦЦЫ В РУКЕ -->
-                    <g transform="translate(110, 0) rotate(-10)">
-                        <!-- Корочка -->
-                        <path d="M 25 40 Q 65 30 105 45 L 65 120 Z" fill="#F59E0B" stroke="#D97706" stroke-width="3"/>
-                        <!-- Сыр -->
-                        <path d="M 30 45 Q 65 37 100 50 L 65 112 Z" fill="#FBBF24"/>
-                        <!-- Пепперони -->
-                        <circle cx="55" cy="60" r="7" fill="#DC2626"/>
-                        <circle cx="75" cy="75" r="8" fill="#DC2626"/>
-                        <circle cx="50" cy="80" r="6" fill="#DC2626"/>
-                        <circle cx="65" cy="98" r="5" fill="#DC2626"/>
-                    </g>
+                    <!-- Рука-веточка (отдыхает на теле) -->
+                    <path d="M 275 110 L 225 80 L 205 60" fill="none" stroke="#78350F" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M 225 80 L 215 90" fill="none" stroke="#78350F" stroke-width="4" stroke-linecap="round"/>
                 </g>
 
-                <!-- Градиент снега для шаров -->
                 <defs>
                     <linearGradient id="snowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="#FFFFFF"/>
@@ -689,7 +675,7 @@
         </div>
     </div>
 
-    <!-- Firebase SDK (v9 Compat mode) -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
