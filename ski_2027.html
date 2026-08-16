@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Val Gardena ⛷️ Италия 2027</title>
+    <title>Val Gardena • Италия 2027</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,800;0,900;1,900&display=swap" rel="stylesheet">
@@ -137,7 +137,7 @@
             100% { opacity: 0.4; transform: scale(0.9); }
         }
 
-        /* --- СЦЕНА С ВЕКТОРНЫМ СНЕГОВИКОМ ПОПЕРЕК ЭКРАНА --- */
+        /* --- ВЕКТОРНАЯ ИЛЛЮСТРАЦИЯ СНЕГОВИКА --- */
         .chill-scene-svg {
             position: relative;
             width: 100%;
@@ -402,6 +402,28 @@
             opacity: 0.7;
         }
 
+        .btn-reset {
+            margin-top: 15px;
+            background: transparent;
+            border: 1px dashed #94a3b8;
+            color: #64748b;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .btn-reset:hover {
+            border-color: #e11d48;
+            color: #e11d48;
+            background: #ffe4e6;
+        }
+
+        /* Modal styling */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -509,15 +531,15 @@
     <div class="container">
         <!-- ШАПКА -->
         <div class="hero-header">
-            <div class="italia-badge">🇮🇹 Val Gardena • Italia</div>
+            <div class="italia-badge">Val Gardena • Italia</div>
             <h1 class="main-title">DOLOMITI <span class="year">2027</span></h1>
             
             <div class="subtitle-pills">
-                <span class="pill">🏔️ Альпы</span>
-                <span class="pill">🍕 Пицца</span>
-                <span class="pill">☀️ Солнце</span>
-                <span class="pill">⛷️ Лыжи</span>
-                <span class="pill">🏂 Сноуборд</span>
+                <span class="pill">Альпы</span>
+                <span class="pill">Пицца</span>
+                <span class="pill">Солнце</span>
+                <span class="pill">Лыжи</span>
+                <span class="pill">Сноуборд</span>
             </div>
 
             <div class="sync-badge">
@@ -526,7 +548,7 @@
             </div>
         </div>
 
-        <!-- ВЕКТОРНЫЙ СНЕГОВИК ПОПЕРЕК ЭКРАНА (БЕЗ ПИЦЦЫ И ИКОНОК) -->
+        <!-- ВЕКТОРНЫЙ СНЕГОВИК С ПИВОМ -->
         <div class="chill-scene-svg">
             <svg class="snowman-svg waving-snowman" viewBox="0 0 600 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Солнце -->
@@ -547,44 +569,37 @@
                 <polygon points="140,210 280,85 400,210" fill="rgba(255,255,255,0.18)"/>
                 <polygon points="350,210 470,100 570,210" fill="rgba(255,255,255,0.1)"/>
 
-                <!-- ЛЫЖИ И СНОУБОРД (Векторные, под снеговиком) -->
+                <!-- ЛЫЖИ И СНОУБОРД -->
                 <g transform="translate(0, 10)">
-                    <!-- Сноуборд -->
                     <rect x="70" y="180" width="460" height="20" rx="10" fill="#0284C7" stroke="#38BDF8" stroke-width="3" transform="rotate(3, 300, 190)"/>
                     <rect x="220" y="179" width="30" height="8" rx="2" fill="#0F172A" transform="rotate(3, 300, 190)"/>
                     <rect x="350" y="186" width="30" height="8" rx="2" fill="#0F172A" transform="rotate(3, 300, 190)"/>
                     
-                    <!-- Лыжи -->
                     <rect x="50" y="168" width="500" height="9" rx="4" fill="#E11D48" transform="rotate(-3, 300, 172)"/>
                     <rect x="50" y="181" width="500" height="9" rx="4" fill="#F59E0B" transform="rotate(-1, 300, 185)"/>
                 </g>
 
-                <!-- БОЛЬШОЙ СНЕГОВИК ПОПЕРЕК (ЛЕЖИТ БОКОМ И УЛЫБАЕТСЯ) -->
+                <!-- СНЕГОВИК -->
                 <g transform="translate(10, 10)">
-                    <!-- Основание (Справа) -->
+                    <!-- Тело снеговика -->
                     <circle cx="440" cy="135" r="62" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
-                    
-                    <!-- Тело (Центр) -->
                     <circle cx="315" cy="130" r="52" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
-                    <!-- Пуговицы -->
+                    
                     <circle cx="315" cy="105" r="5" fill="#1E293B"/>
                     <circle cx="330" cy="130" r="5" fill="#1E293B"/>
                     <circle cx="310" cy="150" r="5" fill="#1E293B"/>
 
-                    <!-- Голова (Слева) -->
+                    <!-- Голова -->
                     <circle cx="195" cy="120" r="46" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
 
-                    <!-- Щеки -->
+                    <!-- Щечки, рот и морковка -->
                     <circle cx="165" cy="130" r="7" fill="#FCA5A5" opacity="0.6"/>
                     <circle cx="220" cy="135" r="7" fill="#FCA5A5" opacity="0.6"/>
 
-                    <!-- Улыбка -->
                     <path d="M 170 132 Q 192 158 215 134" fill="none" stroke="#0F172A" stroke-width="5" stroke-linecap="round"/>
-
-                    <!-- Морковка -->
                     <polygon points="193,120 142,122 191,130" fill="#F97316"/>
 
-                    <!-- Солнцезащитные Очки -->
+                    <!-- Очки -->
                     <g transform="rotate(-6, 195, 105)">
                         <rect x="160" y="94" width="32" height="20" rx="5" fill="#0F172A"/>
                         <rect x="198" y="94" width="32" height="20" rx="5" fill="#0F172A"/>
@@ -593,16 +608,36 @@
                         <line x1="202" y1="98" x2="214" y2="110" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
                     </g>
 
-                    <!-- Шапка-цилиндр -->
+                    <!-- Шапка -->
                     <g transform="rotate(-15, 215, 75)">
                         <rect x="195" y="60" width="60" height="8" rx="3" fill="#1E293B"/>
                         <rect x="205" y="25" width="40" height="35" rx="4" fill="#1E293B"/>
                         <rect x="205" y="52" width="40" height="8" fill="#E11D48"/>
                     </g>
 
-                    <!-- Рука-веточка (отдыхает на теле) -->
-                    <path d="M 275 110 L 225 80 L 205 60" fill="none" stroke="#78350F" stroke-width="5" stroke-linecap="round"/>
-                    <path d="M 225 80 L 215 90" fill="none" stroke="#78350F" stroke-width="4" stroke-linecap="round"/>
+                    <!-- РУКА С БОКАЛОМ ПИВА -->
+                    <!-- Ветка держит кружку -->
+                    <path d="M 275 110 L 255 80 L 260 68" fill="none" stroke="#78350F" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M 255 80 L 245 88" fill="none" stroke="#78350F" stroke-width="4" stroke-linecap="round"/>
+
+                    <!-- Бокал/Кружка пива -->
+                    <g transform="translate(248, 32)">
+                        <!-- Ручка кружки -->
+                        <path d="M 25 12 C 34 12, 34 28, 25 28" fill="none" stroke="#E2E8F0" stroke-width="3.5" stroke-linecap="round"/>
+                        <!-- Корпус стеклянной кружки -->
+                        <rect x="4" y="8" width="22" height="28" rx="4" fill="rgba(255, 255, 255, 0.25)" stroke="#E2E8F0" stroke-width="2.5"/>
+                        <!-- Напиток (пиво) -->
+                        <rect x="6" y="13" width="18" height="21" rx="2" fill="#F59E0B"/>
+                        <!-- Пышная пена -->
+                        <rect x="4" y="6" width="22" height="8" rx="4" fill="#FFFFFF"/>
+                        <circle cx="8" cy="7" r="4.5" fill="#FFFFFF"/>
+                        <circle cx="15" cy="5" r="5.5" fill="#FFFFFF"/>
+                        <circle cx="22" cy="7" r="4.5" fill="#FFFFFF"/>
+                        <!-- Пузырьки и блик -->
+                        <line x1="8" y1="15" x2="8" y2="30" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                        <circle cx="12" cy="22" r="1" fill="#FEF3C7"/>
+                        <circle cx="17" cy="18" r="1.5" fill="#FEF3C7"/>
+                    </g>
                 </g>
 
                 <defs>
@@ -642,10 +677,12 @@
             </div>
 
             <ul class="item-list" id="itemList"></ul>
+
+            <button class="btn-reset" onclick="resetToFullList()">Обновить до полного списка со всеми продуктами</button>
         </div>
     </div>
 
-    <!-- Modal for Editing Responsible Name -->
+    <!-- Modal -->
     <div class="modal-overlay" id="editModal">
         <div class="modal-body">
             <div class="modal-title" id="modalItemTitle">Назначить ответственного</div>
@@ -675,7 +712,6 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
@@ -737,7 +773,9 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        // ПОЛНЫЙ СПИСОК (Снаряжение + 28 позиций со скриншота)
         const defaultItems = [
+            // Экипировка и документы
             { text: "Горнолыжная куртка и штаны", takenBy: "Каждый сам", done: false },
             { text: "Термобелье (2 комплекта)", takenBy: "", done: false },
             { text: "Горнолыжная маска / очки", takenBy: "", done: false },
@@ -751,7 +789,9 @@
             { text: "Балаклава / Бафф на шею", takenBy: "", done: false },
             { text: "Пауэрбанки и зарядки", takenBy: "Витя", done: false },
             { text: "Покер, карты", takenBy: "Аня", done: false },
-            { text: "Бюджет на пиццу и Aperol 🍕🍹", takenBy: "Все", done: false },
+            { text: "Бюджет на пиццу и Aperol", takenBy: "Все", done: false },
+            
+            // Провизия и хозяйственные товары
             { text: "Чай разный много", takenBy: "", done: false },
             { text: "Кофе, Фильтры для кофе", takenBy: "", done: false },
             { text: "Какао", takenBy: "", done: false },
@@ -798,7 +838,7 @@
 
         db.ref('val_gardena_checklist').on('value', (snapshot) => {
             const data = snapshot.val();
-            if (data) {
+            if (data && Array.isArray(data) && data.length > 0) {
                 items = data;
                 sortItems();
                 renderItems();
@@ -814,6 +854,13 @@
             sortItems();
             db.ref('val_gardena_checklist').set(items);
             renderItems();
+        }
+
+        function resetToFullList() {
+            if (confirm("Вы уверены, что хотите обновить список до полного набора с продуктами?")) {
+                items = JSON.parse(JSON.stringify(defaultItems));
+                saveState();
+            }
         }
 
         function renderItems() {
