@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Val Gardena • Италия 2027</title>
+    <title>Летний Кемпинг 🏕️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,800;0,900;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -18,15 +18,15 @@
         body {
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 25%, #2e1065 50%, #0284c7 85%, #38bdf8 100%);
+            background: linear-gradient(180deg, #050d1a 0%, #0a192f 40%, #0d233a 70%, #152d24 100%);
             background-attachment: fixed;
-            color: #1e293b;
+            color: #f0f4f8;
             position: relative;
             overflow-x: hidden;
-            padding: 12px 10px 100px 10px;
+            padding: 20px 12px 100px 12px;
         }
 
-        #winter-canvas {
+        #night-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -37,97 +37,54 @@
         }
 
         .container {
-            max-width: 650px;
+            max-width: 600px;
             margin: 0 auto;
             position: relative;
             z-index: 10;
         }
 
-        /* --- ШАПКА --- */
-        .hero-header {
+        .header {
             text-align: center;
-            padding-top: 10px;
-            position: relative;
+            margin-top: 10px;
+            margin-bottom: 15px;
         }
 
-        .italia-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #ffffff;
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 5px 14px;
-            border-radius: 30px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            margin-bottom: 8px;
+        .header h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            color: #ffd166;
+            text-shadow: 0 0 15px rgba(255, 209, 102, 0.6), 0 0 30px rgba(255, 107, 107, 0.4);
+            letter-spacing: 1px;
+            line-height: 1.1;
         }
 
-        .main-title {
-            font-weight: 900;
-            font-size: 2.7rem;
-            line-height: 0.95;
-            color: #ffffff;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(56, 189, 248, 0.5);
-            margin-bottom: 4px;
-        }
-
-        .main-title .year {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        .subtitle-pills {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-
-        .pill {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            color: #f8fafc;
-            font-size: 0.72rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        .header p {
+            font-size: 0.85rem;
+            color: #a8dadc;
+            margin-top: 6px;
+            font-weight: 600;
         }
 
         .sync-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #e2e8f0;
-            font-size: 0.7rem;
-            padding: 4px 12px;
-            border-radius: 14px;
-            font-weight: 600;
+            background: rgba(6, 214, 160, 0.15);
+            border: 1px solid rgba(6, 214, 160, 0.4);
+            color: #06d6a0;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 8px;
+            font-weight: 700;
         }
 
         .sync-dot {
             width: 8px;
             height: 8px;
-            background-color: #10b981;
+            background-color: #06d6a0;
             border-radius: 50%;
-            box-shadow: 0 0 10px #10b981;
+            box-shadow: 0 0 8px #06d6a0;
             animation: pulse 1.5s infinite;
         }
 
@@ -137,43 +94,97 @@
             100% { opacity: 0.4; transform: scale(0.9); }
         }
 
-        /* --- ВЕКТОРНАЯ ИЛЛЮСТРАЦИЯ СНЕГОВИКА --- */
-        .chill-scene-svg {
-            position: relative;
-            width: 100%;
-            margin-top: 10px;
-            margin-bottom: 0;
+        .camp-scene {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
+            gap: 20px;
+            height: 80px;
+            margin-bottom: 20px;
+            position: relative;
         }
 
-        .snowman-svg {
+        .guitar-wrap {
+            font-size: 3rem;
+            animation: guitarRock 3s infinite ease-in-out;
+            transform-origin: bottom center;
+            filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.3));
+        }
+
+        @keyframes guitarRock {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(8deg) translateY(-4px); }
+        }
+
+        .campfire {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .logs {
+            position: absolute;
+            bottom: 0;
             width: 100%;
-            max-width: 600px;
-            height: auto;
-            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+            height: 14px;
         }
 
-        .waving-snowman {
+        .log {
+            position: absolute;
+            width: 45px;
+            height: 9px;
+            background: #5c3d2e;
+            border-radius: 5px;
+            border: 1px solid #3d2314;
+        }
+        .log.l1 { transform: rotate(15deg); left: 5px; }
+        .log.l2 { transform: rotate(-15deg); right: 5px; }
+
+        .flame {
+            position: absolute;
+            bottom: 8px;
+            border-radius: 50% 50% 20% 20%;
             transform-origin: center bottom;
-            animation: gentleTilt 4s ease-in-out infinite alternate;
+            animation: flicker 0.15s infinite alternate ease-in-out;
         }
 
-        @keyframes gentleTilt {
-            0% { transform: rotate(-1.5deg); }
-            100% { transform: rotate(1.5deg); }
+        .flame.f1 {
+            width: 38px;
+            height: 48px;
+            background: radial-gradient(circle, #ff4500 20%, #ff8c00 70%, transparent 100%);
+            box-shadow: 0 0 20px #ff4500, 0 0 40px #ff8c00;
         }
 
-        /* --- КАРТОЧКА И СПИСОК --- */
+        .flame.f2 {
+            width: 24px;
+            height: 32px;
+            background: radial-gradient(circle, #ffe600 30%, #ff8c00 80%);
+            animation-duration: 0.1s;
+        }
+
+        .flame.f3 {
+            width: 12px;
+            height: 18px;
+            background: #ffffff;
+            animation-duration: 0.08s;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); opacity: 0.95; }
+            100% { transform: scale(1.08, 1.12) rotate(2deg); opacity: 1; }
+        }
+
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-radius: 28px;
-            padding: 20px 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: rgba(13, 35, 58, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 18px 14px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .input-box {
@@ -181,10 +192,10 @@
             flex-direction: column;
             gap: 10px;
             margin-bottom: 16px;
-            background: #f1f5f9;
+            background: rgba(255, 255, 255, 0.05);
             padding: 12px;
-            border-radius: 18px;
-            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .input-row {
@@ -195,65 +206,56 @@
         input[type="text"] {
             width: 100%;
             padding: 12px 14px;
-            border: 1.5px solid #cbd5e1;
-            border-radius: 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
             font-size: 0.9rem;
             font-family: inherit;
             outline: none;
-            background: #ffffff;
-            color: #0f172a;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+            background: rgba(10, 25, 47, 0.8);
+            color: #ffffff;
         }
 
         input[type="text"]::placeholder {
-            color: #94a3b8;
+            color: #8892b0;
         }
 
         input[type="text"]:focus {
-            border-color: #0284c7;
-            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+            border-color: #ffd166;
         }
 
         .btn-add {
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-            color: #ffffff;
+            background: linear-gradient(135deg, #ff9f1c 0%, #ffbf69 100%);
+            color: #050d1a;
             border: none;
             padding: 12px;
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: 800;
             font-size: 0.95rem;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
-            transition: transform 0.1s;
-        }
-
-        .btn-add:active {
-            transform: scale(0.98);
         }
 
         .progress-box {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 10px 14px;
             margin-bottom: 16px;
             display: flex;
             flex-direction: column;
             gap: 6px;
-            border: 1px solid #e2e8f0;
         }
 
         .progress-info {
             display: flex;
             justify-content: space-between;
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: #0369a1;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #ffd166;
         }
 
         .progress-bar-bg {
-            height: 10px;
-            background: #cbd5e1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
         }
@@ -261,70 +263,35 @@
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #f59e0b, #10b981);
+            background: linear-gradient(90deg, #ff9f1c, #06d6a0);
             border-radius: 10px;
             transition: width 0.4s ease;
-        }
-
-        /* ТАБЫ СТАТУСА И ИМЕН */
-        .filter-section {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .filter-label {
-            font-size: 0.72rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #64748b;
         }
 
         .filter-tabs {
             display: flex;
             gap: 6px;
+            margin-bottom: 14px;
             overflow-x: auto;
             padding-bottom: 4px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .filter-tabs::-webkit-scrollbar {
-            display: none;
         }
 
         .tab {
-            padding: 7px 13px;
-            background: #e2e8f0;
-            border: 1px solid #cbd5e1;
-            border-radius: 18px;
-            font-size: 0.78rem;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            font-size: 0.75rem;
             font-weight: 700;
-            color: #475569;
+            color: #a8dadc;
             white-space: nowrap;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
         .tab.active {
-            background: #0f172a;
-            color: #ffffff;
-            border-color: #0f172a;
-            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3);
-        }
-
-        .tab-person {
-            background: #fef3c7;
-            border-color: #fde68a;
-            color: #b45309;
-        }
-
-        .tab-person.active {
-            background: #d97706;
-            color: #ffffff;
-            border-color: #b45309;
-            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.3);
+            background: #ffd166;
+            color: #050d1a;
+            border-color: #ffd166;
         }
 
         .item-list {
@@ -335,21 +302,21 @@
         }
 
         .item-card {
-            background: #ffffff;
-            border: 1.5px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 14px;
-            padding: 12px 14px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            transition: all 0.25s ease;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
         }
 
         .item-card.completed {
-            background: #dcfce7;
-            border-color: #86efac;
+            background: rgba(6, 214, 160, 0.08);
+            border-color: rgba(6, 214, 160, 0.25);
+            opacity: 0.7;
         }
 
         .item-left {
@@ -364,24 +331,22 @@
         .checkbox {
             width: 22px;
             height: 22px;
-            border: 2px solid #059669;
+            border: 2px solid #ffd166;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            background: #fff;
-            transition: all 0.2s;
         }
 
         .item-card.completed .checkbox {
-            background: #059669;
-            border-color: #059669;
+            background: #06d6a0;
+            border-color: #06d6a0;
         }
 
         .checkbox::after {
             content: '✓';
-            color: #ffffff;
+            color: #050d1a;
             font-weight: 900;
             font-size: 13px;
             display: none;
@@ -392,58 +357,61 @@
         }
 
         .item-text {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            color: #1e293b;
+            color: #ffffff;
             word-break: break-word;
         }
 
         .item-card.completed .item-text {
             text-decoration: line-through;
-            color: #166534;
-            font-weight: 700;
+            color: #8892b0;
         }
 
         .badge {
-            padding: 5px 10px;
-            border-radius: 12px;
+            padding: 4px 8px;
+            border-radius: 10px;
             font-size: 0.75rem;
             font-weight: 700;
             white-space: nowrap;
             cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .badge:active {
+            transform: scale(0.95);
         }
 
         .badge-person {
-            background: #fef3c7;
-            color: #d97706;
-            border: 1px solid #fde68a;
+            background: rgba(255, 209, 102, 0.15);
+            color: #ffd166;
+            border: 1px solid rgba(255, 209, 102, 0.4);
         }
 
         .badge-none {
-            background: #ffe4e6;
-            color: #e11d48;
-            border: 1px solid #fecdd3;
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.4);
         }
 
         .btn-delete {
             background: none;
             border: none;
-            color: #ef4444;
+            color: #ff6b6b;
             font-size: 1.1rem;
             cursor: pointer;
             padding: 2px 4px;
-            opacity: 0.7;
         }
 
-        /* Modal styling */
+        /* Modal styling for editing names */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
             z-index: 100;
             display: flex;
             align-items: center;
@@ -460,21 +428,22 @@
         }
 
         .modal-body {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 22px;
+            background: #0d233a;
+            border: 1px solid rgba(255, 209, 102, 0.3);
+            border-radius: 18px;
+            padding: 20px;
             width: 100%;
-            max-width: 420px;
+            max-width: 380px;
             display: flex;
             flex-direction: column;
             gap: 14px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
         .modal-title {
             font-size: 1.1rem;
-            font-weight: 800;
-            color: #0369a1;
+            font-weight: 700;
+            color: #ffd166;
             text-align: center;
         }
 
@@ -483,25 +452,22 @@
             flex-wrap: wrap;
             gap: 6px;
             justify-content: center;
-            max-height: 180px;
-            overflow-y: auto;
-            padding: 4px;
         }
 
         .name-chip {
-            background: #f1f5f9;
-            border: 1px solid #cbd5e1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 6px 12px;
             border-radius: 12px;
             font-size: 0.8rem;
-            color: #334155;
+            color: #a8dadc;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .name-chip:active {
-            background: #0284c7;
-            color: #ffffff;
+            background: #ffd166;
+            color: #050d1a;
         }
 
         .modal-actions {
@@ -513,7 +479,7 @@
         .btn-modal {
             flex: 1;
             padding: 10px;
-            border-radius: 10px;
+            border-radius: 8px;
             border: none;
             font-weight: 700;
             cursor: pointer;
@@ -521,151 +487,52 @@
         }
 
         .btn-modal.save {
-            background: #0284c7;
-            color: #ffffff;
+            background: #06d6a0;
+            color: #050d1a;
         }
 
         .btn-modal.clear {
-            background: #ffe4e6;
-            color: #e11d48;
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.3);
         }
 
         .btn-modal.cancel {
-            background: #f1f5f9;
-            color: #64748b;
+            background: rgba(255, 255, 255, 0.1);
+            color: #a8dadc;
         }
     </style>
 </head>
 <body>
 
-    <canvas id="winter-canvas"></canvas>
+    <canvas id="night-canvas"></canvas>
 
     <div class="container">
-        <!-- ШАПКА -->
-        <div class="hero-header">
-            <div class="italia-badge">Val Gardena • Italia</div>
-            <h1 class="main-title">DOLOMITI <span class="year">2027</span></h1>
-            
-            <div class="subtitle-pills">
-                <span class="pill">Альпы</span>
-                <span class="pill">Пицца</span>
-                <span class="pill">Солнце</span>
-                <span class="pill">Лыжи</span>
-                <span class="pill">Сноуборд</span>
-            </div>
-
+        <div class="header">
+            <h1>🔥 Поход на Кемпинг 🏕️</h1>
+            <p>Общий чек-лист группы</p>
             <div class="sync-badge">
                 <div class="sync-dot"></div>
-                <span id="syncStatus">Подключение к базе...</span>
+                <span id="syncStatus">Подключение к Firebase...</span>
             </div>
         </div>
 
-        <!-- ВЕКТОРНЫЙ СНЕГОВИК С ПИВОМ -->
-        <div class="chill-scene-svg">
-            <svg class="snowman-svg waving-snowman" viewBox="0 0 600 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Солнце -->
-                <circle cx="510" cy="55" r="30" fill="#FBBF24"/>
-                <g stroke="#FBBF24" stroke-width="5" stroke-linecap="round">
-                    <line x1="510" y1="12" x2="510" y2="5"/>
-                    <line x1="510" y1="98" x2="510" y2="105"/>
-                    <line x1="467" y1="55" x2="460" y2="55"/>
-                    <line x1="553" y1="55" x2="560" y2="55"/>
-                    <line x1="480" y1="25" x2="475" y2="20"/>
-                    <line x1="540" y1="85" x2="545" y2="90"/>
-                    <line x1="480" y1="85" x2="475" y2="90"/>
-                    <line x1="540" y1="25" x2="545" y2="20"/>
-                </g>
-
-                <!-- Горы -->
-                <polygon points="10,210 110,110 210,210" fill="rgba(255,255,255,0.12)"/>
-                <polygon points="140,210 280,85 400,210" fill="rgba(255,255,255,0.18)"/>
-                <polygon points="350,210 470,100 570,210" fill="rgba(255,255,255,0.1)"/>
-
-                <!-- ЛЫЖИ И СНОУБОРД -->
-                <g transform="translate(0, 10)">
-                    <rect x="70" y="180" width="460" height="20" rx="10" fill="#0284C7" stroke="#38BDF8" stroke-width="3" transform="rotate(3, 300, 190)"/>
-                    <rect x="220" y="179" width="30" height="8" rx="2" fill="#0F172A" transform="rotate(3, 300, 190)"/>
-                    <rect x="350" y="186" width="30" height="8" rx="2" fill="#0F172A" transform="rotate(3, 300, 190)"/>
-                    
-                    <rect x="50" y="168" width="500" height="9" rx="4" fill="#E11D48" transform="rotate(-3, 300, 172)"/>
-                    <rect x="50" y="181" width="500" height="9" rx="4" fill="#F59E0B" transform="rotate(-1, 300, 185)"/>
-                </g>
-
-                <!-- СНЕГОВИК -->
-                <g transform="translate(10, 10)">
-                    <!-- Тело снеговика -->
-                    <circle cx="440" cy="135" r="62" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
-                    <circle cx="315" cy="130" r="52" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
-                    
-                    <circle cx="315" cy="105" r="5" fill="#1E293B"/>
-                    <circle cx="330" cy="130" r="5" fill="#1E293B"/>
-                    <circle cx="310" cy="150" r="5" fill="#1E293B"/>
-
-                    <!-- Голова -->
-                    <circle cx="195" cy="120" r="46" fill="url(#snowGrad)" stroke="#E2E8F0" stroke-width="3"/>
-
-                    <!-- Щечки, рот и морковка -->
-                    <circle cx="165" cy="130" r="7" fill="#FCA5A5" opacity="0.6"/>
-                    <circle cx="220" cy="135" r="7" fill="#FCA5A5" opacity="0.6"/>
-
-                    <path d="M 170 132 Q 192 158 215 134" fill="none" stroke="#0F172A" stroke-width="5" stroke-linecap="round"/>
-                    <polygon points="193,120 142,122 191,130" fill="#F97316"/>
-
-                    <!-- Очки -->
-                    <g transform="rotate(-6, 195, 105)">
-                        <rect x="160" y="94" width="32" height="20" rx="5" fill="#0F172A"/>
-                        <rect x="198" y="94" width="32" height="20" rx="5" fill="#0F172A"/>
-                        <line x1="192" y1="102" x2="198" y2="102" stroke="#0F172A" stroke-width="4"/>
-                        <line x1="164" y1="98" x2="176" y2="110" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="202" y1="98" x2="214" y2="110" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
-                    </g>
-
-                    <!-- Шапка -->
-                    <g transform="rotate(-15, 215, 75)">
-                        <rect x="195" y="60" width="60" height="8" rx="3" fill="#1E293B"/>
-                        <rect x="205" y="25" width="40" height="35" rx="4" fill="#1E293B"/>
-                        <rect x="205" y="52" width="40" height="8" fill="#E11D48"/>
-                    </g>
-
-                    <!-- РУКА С БОКАЛОМ ПИВА -->
-                    <!-- Ветка держит кружку -->
-                    <path d="M 275 110 L 255 80 L 260 68" fill="none" stroke="#78350F" stroke-width="5" stroke-linecap="round"/>
-                    <path d="M 255 80 L 245 88" fill="none" stroke="#78350F" stroke-width="4" stroke-linecap="round"/>
-
-                    <!-- Бокал/Кружка пива -->
-                    <g transform="translate(248, 32)">
-                        <!-- Ручка кружки -->
-                        <path d="M 25 12 C 34 12, 34 28, 25 28" fill="none" stroke="#E2E8F0" stroke-width="3.5" stroke-linecap="round"/>
-                        <!-- Корпус стеклянной кружки -->
-                        <rect x="4" y="8" width="22" height="28" rx="4" fill="rgba(255, 255, 255, 0.25)" stroke="#E2E8F0" stroke-width="2.5"/>
-                        <!-- Напиток (пиво) -->
-                        <rect x="6" y="13" width="18" height="21" rx="2" fill="#F59E0B"/>
-                        <!-- Пышная пена -->
-                        <rect x="4" y="6" width="22" height="8" rx="4" fill="#FFFFFF"/>
-                        <circle cx="8" cy="7" r="4.5" fill="#FFFFFF"/>
-                        <circle cx="15" cy="5" r="5.5" fill="#FFFFFF"/>
-                        <circle cx="22" cy="7" r="4.5" fill="#FFFFFF"/>
-                        <!-- Пузырьки и блик -->
-                        <line x1="8" y1="15" x2="8" y2="30" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
-                        <circle cx="12" cy="22" r="1" fill="#FEF3C7"/>
-                        <circle cx="17" cy="18" r="1.5" fill="#FEF3C7"/>
-                    </g>
-                </g>
-
-                <defs>
-                    <linearGradient id="snowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#FFFFFF"/>
-                        <stop offset="85%" stop-color="#F1F5F9"/>
-                        <stop offset="100%" stop-color="#CBD5E1"/>
-                    </linearGradient>
-                </defs>
-            </svg>
+        <div class="camp-scene">
+            <div class="guitar-wrap">🎸</div>
+            <div class="campfire">
+                <div class="logs">
+                    <div class="log l1"></div>
+                    <div class="log l2"></div>
+                </div>
+                <div class="flame f1"></div>
+                <div class="flame f2"></div>
+                <div class="flame f3"></div>
+            </div>
         </div>
 
-        <!-- КАРТОЧКА СПИСКА -->
         <div class="card">
             <div class="input-box">
-                <input type="text" id="itemInput" placeholder="Что нужно взять в Валь-Гардену?">
+                <input type="text" id="itemInput" placeholder="Что нужно взять?">
                 <div class="input-row">
                     <input type="text" id="nameInput" placeholder="Кто берет?">
                     <button class="btn-add" onclick="addItem()">+ Добавить</button>
@@ -674,54 +541,42 @@
 
             <div class="progress-box">
                 <div class="progress-info">
-                    <span>Готовность к поездке:</span>
-                    <span id="progressText">0 из 0</span>
+                    <span>Собрано вещей:</span>
+                    <span id="progressText">0 / 0</span>
                 </div>
                 <div class="progress-bar-bg">
                     <div class="progress-bar-fill" id="progressFill"></div>
                 </div>
             </div>
 
-            <div class="filter-section">
-                <div class="filter-label">Статус:</div>
-                <div class="filter-tabs">
-                    <div class="tab active" onclick="setStatusFilter('all', this)">Все вещи</div>
-                    <div class="tab" onclick="setStatusFilter('pending', this)">Нужно собрать</div>
-                    <div class="tab" onclick="setStatusFilter('done', this)">Уже в багажнике</div>
-                </div>
-
-                <div class="filter-label" style="margin-top: 4px;">Кто берет:</div>
-                <div class="filter-tabs" id="personTabs">
-                    <div class="tab tab-person active" onclick="setPersonFilter('all', this)">Все участники</div>
-                    <div class="tab tab-person" onclick="setPersonFilter('none', this)">❓ Не назначено</div>
-                </div>
+            <div class="filter-tabs">
+                <div class="tab active" onclick="setFilter('all', this)">Все вещи</div>
+                <div class="tab" onclick="setFilter('pending', this)">Нужно собрать</div>
+                <div class="tab" onclick="setFilter('done', this)">Уже собрано</div>
             </div>
 
             <ul class="item-list" id="itemList"></ul>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal for Editing Responsible Name -->
     <div class="modal-overlay" id="editModal">
         <div class="modal-body">
             <div class="modal-title" id="modalItemTitle">Назначить ответственного</div>
             
-            <div style="font-size: 0.8rem; color: #64748b; text-align: center;">Быстрый выбор участника:</div>
+            <div style="font-size: 0.8rem; color: #a8dadc; text-align: center;">Быстрый выбор участника:</div>
             <div class="quick-names">
-                <span class="name-chip" onclick="selectQuickName('Саша')">Саша</span>
-                <span class="name-chip" onclick="selectQuickName('Ваня')">Ваня</span>
                 <span class="name-chip" onclick="selectQuickName('Вова')">Вова</span>
-                <span class="name-chip" onclick="selectQuickName('Дима')">Дима</span>
-                <span class="name-chip" onclick="selectQuickName('Даня')">Даня</span>
-                <span class="name-chip" onclick="selectQuickName('Аня')">Аня</span>
-                <span class="name-chip" onclick="selectQuickName('Лёша')">Лёша</span>
+                <span class="name-chip" onclick="selectQuickName('Верон')">Верон</span>
                 <span class="name-chip" onclick="selectQuickName('Витя')">Витя</span>
-                <span class="name-chip" onclick="selectQuickName('Алёнка')">Алёнка</span>
-                <span class="name-chip" onclick="selectQuickName('Алекс')">Алекс</span>
+                <span class="name-chip" onclick="selectQuickName('Аня')">Аня</span>
+                <span class="name-chip" onclick="selectQuickName('Леша')">Леша</span>
+                <span class="name-chip" onclick="selectQuickName('Руся')">Руся</span>
+                <span class="name-chip" onclick="selectQuickName('Маша')">Маша</span>
             </div>
 
-            <div style="font-size: 0.8rem; color: #64748b; text-align: center; margin-top: 4px;">Или введите имя:</div>
-            <input type="text" id="modalNameInput" placeholder="Имя участника">
+            <div style="font-size: 0.8rem; color: #a8dadc; text-align: center; margin-top: 4px;">Или добавьте / измените имя:</div>
+            <input type="text" id="modalNameInput" placeholder="Имя (например: Вова + Леша)">
 
             <div class="modal-actions">
                 <button class="btn-modal clear" onclick="clearName()">Сбросить</button>
@@ -731,12 +586,13 @@
         </div>
     </div>
 
+    <!-- Firebase SDK (v9 Compat mode) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <script>
-        // Анимированный снег
-        const canvas = document.getElementById('winter-canvas');
+        // Canvas Animation
+        const canvas = document.getElementById('night-canvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
@@ -746,42 +602,58 @@
             height = canvas.height = window.innerHeight;
         });
 
-        const snowflakes = [];
+        const stars = [];
         for (let i = 0; i < 50; i++) {
-            snowflakes.push({
+            stars.push({ x: Math.random() * width, y: Math.random() * height * 0.7, size: Math.random() * 1.5, alpha: Math.random() });
+        }
+
+        const fireflies = [];
+        for (let i = 0; i < 30; i++) {
+            fireflies.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                r: Math.random() * 3 + 1,
-                d: Math.random() * 1
+                radius: Math.random() * 2 + 1,
+                vx: (Math.random() - 0.5) * 0.6,
+                vy: (Math.random() - 0.5) * 0.6,
+                alpha: Math.random(),
+                pulse: Math.random() * 0.03 + 0.01
             });
         }
 
-        function drawWinterEffect() {
+        function drawNight() {
             ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
-            ctx.beginPath();
-            snowflakes.forEach(p => {
-                ctx.moveTo(p.x, p.y);
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
-                
-                p.y += Math.cos(p.d) + 1 + p.r / 2;
-                p.x += Math.sin(p.d) * 0.5;
-
-                if (p.x > width + 5 || p.x < -5 || p.y > height) {
-                    p.x = Math.random() * width;
-                    p.y = -10;
-                }
+            ctx.fillStyle = '#ffffff';
+            stars.forEach(s => {
+                ctx.globalAlpha = s.alpha;
+                ctx.fillRect(s.x, s.y, s.size, s.size);
             });
-            ctx.fill();
-            requestAnimationFrame(drawWinterEffect);
+
+            fireflies.forEach(f => {
+                f.x += f.vx;
+                f.y += f.vy;
+                if (f.x < 0 || f.x > width) f.vx *= -1;
+                if (f.y < 0 || f.y > height) f.vy *= -1;
+                f.alpha += f.pulse;
+                if (f.alpha > 1 || f.alpha < 0.2) f.pulse *= -1;
+
+                ctx.globalAlpha = Math.max(0, Math.min(1, f.alpha));
+                ctx.beginPath();
+                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffd166';
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#ffd166';
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+            requestAnimationFrame(drawNight);
         }
-        drawWinterEffect();
+        drawNight();
 
         // --- FIREBASE CONFIGURATION ---
         const firebaseConfig = {
             apiKey: "AIzaSyC6qT5vyGXr48TwGwa76ev65UjDZ5nWn54",
             authDomain: "camping-2027.firebaseapp.com",
-            databaseURL: "https://ski-db-f2a97-default-rtdb.europe-west1.firebasedatabase.app",
+            databaseURL: "https://camping-2027-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "camping-2027",
             storageBucket: "camping-2027.firebasestorage.app",
             messagingSenderId: "441053727767",
@@ -789,124 +661,77 @@
             measurementId: "G-9P04VB75SP"
         };
 
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // ПОЛНЫЙ СПИСОК (Снаряжение + 28 позиций)
         const defaultItems = [
-            // Экипировка и документы
-            { text: "Горнолыжная куртка и штаны", takenBy: "Каждый сам", done: false },
-            { text: "Термобелье (2 комплекта)", takenBy: "", done: false },
-            { text: "Горнолыжная маска / очки", takenBy: "", done: false },
-            { text: "Шлем горнолыжный", takenBy: "", done: false },
-            { text: "Перчатки (непромокаемые)", takenBy: "", done: false },
-            { text: "Солнцезащитный крем SPF 50", takenBy: "", done: false },
-            { text: "Сушилка для ботинок", takenBy: "Саша", done: false },
-            { text: "Горнолыжные носки (3 пары)", takenBy: "", done: false },
-            { text: "Скипасс / Документы / Страховка", takenBy: "Каждый сам", done: false },
-            { text: "Купальник / Плавки (для SPA)", takenBy: "", done: false },
-            { text: "Балаклава / Бафф на шею", takenBy: "", done: false },
-            { text: "Пауэрбанки и зарядки", takenBy: "Витя", done: false },
-            { text: "Покер, карты", takenBy: "Аня", done: false },
-            { text: "Бюджет на пиццу и Aperol", takenBy: "Все", done: false },
-            
-            // Провизия и хозяйственные товары
-            { text: "Чай разный много", takenBy: "", done: false },
-            { text: "Кофе, Фильтры для кофе", takenBy: "", done: false },
-            { text: "Какао", takenBy: "", done: false },
-            { text: "Сахар, Соль, Перец, Приправы", takenBy: "", done: false },
-            { text: "Тряпки кухня, tabs für Spülmaschine 10", takenBy: "", done: false },
-            { text: "Макароны", takenBy: "", done: false },
-            { text: "Гречка", takenBy: "", done: false },
-            { text: "Рис", takenBy: "", done: false },
-            { text: "Тушенка 2–3 банки", takenBy: "", done: false },
-            { text: "Конфеты, печеньки", takenBy: "", done: false },
-            { text: "Растительное масло бутылка", takenBy: "", done: false },
-            { text: "Хреновина с Ани", takenBy: "", done: false },
-            { text: "Колбаса палка", takenBy: "", done: false },
-            { text: "Сыр голова", takenBy: "", done: false },
-            { text: "Масло мазательное 3 пачки", takenBy: "", done: false },
-            { text: "Яйца много штук", takenBy: "", done: false },
-            { text: "Булка хлеба", takenBy: "", done: false },
-            { text: "Мёд", takenBy: "", done: false },
-            { text: "Овсянка", takenBy: "", done: false },
-            { text: "Чеснок, лук", takenBy: "", done: false },
-            { text: "Сало", takenBy: "", done: false },
-            { text: "Ледовые пакетики", takenBy: "", done: false },
-            { text: "К пиву фисташки, орешки, рыбка", takenBy: "", done: false },
-            { text: "Пиво пару сисек", takenBy: "", done: false },
-            { text: "Яблоки", takenBy: "", done: false },
-            { text: "Мандарины", takenBy: "", done: false },
-            { text: "Кристалы/сауна", takenBy: "", done: false }
+            { text: "Зарядная станция от Темы", takenBy: "Вова", done: false },
+            { text: "Походная плита", takenBy: "Верон", done: false },
+            { text: "Wasserkocher для каши", takenBy: "Витя", done: false },
+            { text: "Гриль кастрюля", takenBy: "Аня", done: false },
+            { text: "Гриль чемодан", takenBy: "Витя", done: false },
+            { text: "Гитара", takenBy: "Леша / Вова", done: false },
+            { text: "Походная посуда", takenBy: "Каждый сам себе", done: false },
+            { text: "Сковородка", takenBy: "", done: false },
+            { text: "Кастрюля маленькая", takenBy: "", done: false },
+            { text: "Küchenrollen", takenBy: "", done: false },
+            { text: "Müllsäcke", takenBy: "", done: false },
+            { text: "Чай", takenBy: "", done: false },
+            { text: "Кофе", takenBy: "", done: false },
+            { text: "Молоко / сливки", takenBy: "", done: false },
+            { text: "Хлеб", takenBy: "", done: false },
+            { text: "Помидоры", takenBy: "", done: false },
+            { text: "Огурцы", takenBy: "", done: false },
+            { text: "Оливки", takenBy: "", done: false },
+            { text: "Сметана", takenBy: "", done: false },
+            { text: "Мясо для гриля (на 2 вечера)", takenBy: "", done: false },
+            { text: "Колбаса", takenBy: "", done: false },
+            { text: "Сыр", takenBy: "", done: false },
+            { text: "Маргарин / масло", takenBy: "", done: false },
+            { text: "Бухло / пиво", takenBy: "", done: false },
+            { text: "Кола", takenBy: "", done: false },
+            { text: "Семечки", takenBy: "", done: false },
+            { text: "Вода", takenBy: "", done: false },
+            { text: "Пачка макарон или 2 кг картошки", takenBy: "", done: false },
+            { text: "Угли", takenBy: "", done: false }
         ];
 
         let items = defaultItems;
-        let currentStatusFilter = 'all';
-        let currentPersonFilter = 'all';
+        let currentFilter = 'all';
         let editingIndex = null;
 
+        // Логика сортировки: Выполнено (1) -> Назначено (2) -> Открыто (3)
         function sortItems() {
             items.sort((a, b) => {
                 const getPriority = (item) => {
-                    if (item.done) return 1;
-                    if (item.takenBy && item.takenBy.trim() !== '') return 2;
-                    return 3;
+                    if (item.done) return 1; // Вверху: выполненно
+                    if (item.takenBy && item.takenBy.trim() !== '') return 2; // Потом: назначенно
+                    return 3; // Внизу: открыто
                 };
                 return getPriority(a) - getPriority(b);
             });
         }
 
-        db.ref('val_gardena_checklist').on('value', (snapshot) => {
+        // Real-time synchronization listener
+        db.ref('camping_checklist').on('value', (snapshot) => {
             const data = snapshot.val();
-            if (data && Array.isArray(data) && data.length > 0) {
+            if (data) {
                 items = data;
                 sortItems();
                 renderItems();
-                renderPersonTabs();
             } else {
                 items = defaultItems;
                 sortItems();
-                db.ref('val_gardena_checklist').set(items);
+                db.ref('camping_checklist').set(items);
             }
             document.getElementById('syncStatus').innerText = "Онлайн (Синхронизировано)";
         });
 
         function saveState() {
             sortItems();
-            db.ref('val_gardena_checklist').set(items);
+            db.ref('camping_checklist').set(items);
             renderItems();
-            renderPersonTabs();
-        }
-
-        // РЕНДЕР КНОПОК ФИЛЬТРАЦИИ ПО ИМЕНАМ
-        function renderPersonTabs() {
-            const personTabsContainer = document.getElementById('personTabs');
-            
-            // Находим уникальные имена
-            const namesSet = new Set();
-            items.forEach(item => {
-                if (item.takenBy && item.takenBy.trim() !== '') {
-                    // Разделяем имена если несколько (через запятую)
-                    item.takenBy.split(',').forEach(n => {
-                        const trimmed = n.trim();
-                        if (trimmed) namesSet.add(trimmed);
-                    });
-                }
-            });
-
-            const uniqueNames = Array.from(namesSet).sort();
-
-            let html = `
-                <div class="tab tab-person ${currentPersonFilter === 'all' ? 'active' : ''}" onclick="setPersonFilter('all', this)">Все участники</div>
-                <div class="tab tab-person ${currentPersonFilter === 'none' ? 'active' : ''}" onclick="setPersonFilter('none', this)">❓ Не назначено</div>
-            `;
-
-            uniqueNames.forEach(name => {
-                const isActive = currentPersonFilter === name ? 'active' : '';
-                html += `<div class="tab tab-person ${isActive}" onclick="setPersonFilter('${name}', this)">👤 ${name}</div>`;
-            });
-
-            personTabsContainer.innerHTML = html;
         }
 
         function renderItems() {
@@ -917,25 +742,15 @@
             items.forEach((item, index) => {
                 if (item.done) completedCount++;
 
-                // Фильтрация по статусу
-                if (currentStatusFilter === 'pending' && item.done) return;
-                if (currentStatusFilter === 'done' && !item.done) return;
-
-                // Фильтрация по имени
-                if (currentPersonFilter === 'none') {
-                    if (item.takenBy && item.takenBy.trim() !== '') return;
-                } else if (currentPersonFilter !== 'all') {
-                    if (!item.takenBy) return;
-                    const names = item.takenBy.split(',').map(n => n.trim());
-                    if (!names.includes(currentPersonFilter)) return;
-                }
+                if (currentFilter === 'pending' && item.done) return;
+                if (currentFilter === 'done' && !item.done) return;
 
                 const li = document.createElement('li');
                 li.className = `item-card ${item.done ? 'completed' : ''}`;
 
                 const badge = item.takenBy 
                     ? `<span class="badge badge-person" onclick="openModal(${index})">👤 ${item.takenBy}</span>`
-                    : `<span class="badge badge-none" onclick="openModal(${index})">❓ Кто берет?</span>`;
+                    : `<span class="badge badge-none" onclick="openModal(${index})">❓ Назначить</span>`;
 
                 li.innerHTML = `
                     <div class="item-left" onclick="toggleDone(${index})">
@@ -981,20 +796,14 @@
             saveState();
         }
 
-        function setStatusFilter(filter, tabEl) {
-            currentStatusFilter = filter;
-            tabEl.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        function setFilter(filter, tabEl) {
+            currentFilter = filter;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             tabEl.classList.add('active');
             renderItems();
         }
 
-        function setPersonFilter(person, tabEl) {
-            currentPersonFilter = person;
-            tabEl.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            tabEl.classList.add('active');
-            renderItems();
-        }
-
+        // Modal Functions
         function openModal(index) {
             editingIndex = index;
             const item = items[index];
