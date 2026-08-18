@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Летний Кемпинг 🏕️</title>
+    <title>Летний Кемпинг 🏕️ 2027</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,800;0,900;1,900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -18,15 +18,15 @@
         body {
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(180deg, #050d1a 0%, #0a192f 40%, #0d233a 70%, #152d24 100%);
+            background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 30%, #431407 65%, #15803d 100%);
             background-attachment: fixed;
-            color: #f0f4f8;
+            color: #1e293b;
             position: relative;
             overflow-x: hidden;
-            padding: 20px 12px 100px 12px;
+            padding: 12px 10px 100px 10px;
         }
 
-        #night-canvas {
+        #fireflies-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -37,54 +37,97 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             position: relative;
             z-index: 10;
         }
 
-        .header {
+        /* --- ШАПКА --- */
+        .hero-header {
             text-align: center;
-            margin-top: 10px;
-            margin-bottom: 15px;
+            padding-top: 10px;
+            position: relative;
         }
 
-        .header h1 {
-            font-family: 'Caveat', cursive;
-            font-size: 2.8rem;
-            color: #ffd166;
-            text-shadow: 0 0 15px rgba(255, 209, 102, 0.6), 0 0 30px rgba(255, 107, 107, 0.4);
-            letter-spacing: 1px;
-            line-height: 1.1;
+        .summer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 5px 14px;
+            border-radius: 30px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            margin-bottom: 8px;
         }
 
-        .header p {
-            font-size: 0.85rem;
-            color: #a8dadc;
-            margin-top: 6px;
-            font-weight: 600;
+        .main-title {
+            font-weight: 900;
+            font-size: 2.5rem;
+            line-height: 0.95;
+            color: #ffffff;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 30px rgba(245, 158, 11, 0.4);
+            margin-bottom: 4px;
+        }
+
+        .main-title .year {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .subtitle-pills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            color: #f8fafc;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
         .sync-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(6, 214, 160, 0.15);
-            border: 1px solid rgba(6, 214, 160, 0.4);
-            color: #06d6a0;
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 12px;
-            margin-top: 8px;
-            font-weight: 700;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e2e8f0;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-weight: 600;
         }
 
         .sync-dot {
             width: 8px;
             height: 8px;
-            background-color: #06d6a0;
+            background-color: #10b981;
             border-radius: 50%;
-            box-shadow: 0 0 8px #06d6a0;
+            box-shadow: 0 0 10px #10b981;
             animation: pulse 1.5s infinite;
         }
 
@@ -94,97 +137,33 @@
             100% { opacity: 0.4; transform: scale(0.9); }
         }
 
-        .camp-scene {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 20px;
-            height: 80px;
-            margin-bottom: 20px;
+        /* --- ВЕКТОРНАЯ ИЛЛЮСТРАЦИЯ ЛЕТНЕГО КЕМПИНГА --- */
+        .chill-scene-svg {
             position: relative;
-        }
-
-        .guitar-wrap {
-            font-size: 3rem;
-            animation: guitarRock 3s infinite ease-in-out;
-            transform-origin: bottom center;
-            filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.3));
-        }
-
-        @keyframes guitarRock {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(8deg) translateY(-4px); }
-        }
-
-        .campfire {
-            position: relative;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .logs {
-            position: absolute;
-            bottom: 0;
             width: 100%;
-            height: 14px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .log {
-            position: absolute;
-            width: 45px;
-            height: 9px;
-            background: #5c3d2e;
-            border-radius: 5px;
-            border: 1px solid #3d2314;
-        }
-        .log.l1 { transform: rotate(15deg); left: 5px; }
-        .log.l2 { transform: rotate(-15deg); right: 5px; }
-
-        .flame {
-            position: absolute;
-            bottom: 8px;
-            border-radius: 50% 50% 20% 20%;
-            transform-origin: center bottom;
-            animation: flicker 0.15s infinite alternate ease-in-out;
+        .camping-svg {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
         }
 
-        .flame.f1 {
-            width: 38px;
-            height: 48px;
-            background: radial-gradient(circle, #ff4500 20%, #ff8c00 70%, transparent 100%);
-            box-shadow: 0 0 20px #ff4500, 0 0 40px #ff8c00;
-        }
-
-        .flame.f2 {
-            width: 24px;
-            height: 32px;
-            background: radial-gradient(circle, #ffe600 30%, #ff8c00 80%);
-            animation-duration: 0.1s;
-        }
-
-        .flame.f3 {
-            width: 12px;
-            height: 18px;
-            background: #ffffff;
-            animation-duration: 0.08s;
-        }
-
-        @keyframes flicker {
-            0% { transform: scale(1) rotate(-2deg); opacity: 0.95; }
-            100% { transform: scale(1.08, 1.12) rotate(2deg); opacity: 1; }
-        }
-
+        /* --- КАРТОЧКА И СПИСОК --- */
         .card {
-            background: rgba(13, 35, 58, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            padding: 18px 14px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 28px;
+            padding: 20px 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
         .input-box {
@@ -192,10 +171,10 @@
             flex-direction: column;
             gap: 10px;
             margin-bottom: 16px;
-            background: rgba(255, 255, 255, 0.05);
+            background: #f1f5f9;
             padding: 12px;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
         }
 
         .input-row {
@@ -206,56 +185,65 @@
         input[type="text"] {
             width: 100%;
             padding: 12px 14px;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
             font-size: 0.9rem;
             font-family: inherit;
             outline: none;
-            background: rgba(10, 25, 47, 0.8);
-            color: #ffffff;
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
         }
 
         input[type="text"]::placeholder {
-            color: #8892b0;
+            color: #94a3b8;
         }
 
         input[type="text"]:focus {
-            border-color: #ffd166;
+            border-color: #15803d;
+            box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.2);
         }
 
         .btn-add {
-            background: linear-gradient(135deg, #ff9f1c 0%, #ffbf69 100%);
-            color: #050d1a;
+            background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+            color: #ffffff;
             border: none;
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 800;
             font-size: 0.95rem;
             cursor: pointer;
             width: 100%;
+            box-shadow: 0 4px 14px rgba(21, 128, 61, 0.4);
+            transition: transform 0.1s;
+        }
+
+        .btn-add:active {
+            transform: scale(0.98);
         }
 
         .progress-box {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 10px 14px;
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 12px 14px;
             margin-bottom: 16px;
             display: flex;
             flex-direction: column;
             gap: 6px;
+            border: 1px solid #e2e8f0;
         }
 
         .progress-info {
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #ffd166;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #15803d;
         }
 
         .progress-bar-bg {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            background: #cbd5e1;
             border-radius: 10px;
             overflow: hidden;
         }
@@ -263,35 +251,70 @@
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #ff9f1c, #06d6a0);
+            background: linear-gradient(90deg, #f59e0b, #10b981);
             border-radius: 10px;
             transition: width 0.4s ease;
+        }
+
+        /* ФИЛЬТРЫ */
+        .filter-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .filter-label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
         }
 
         .filter-tabs {
             display: flex;
             gap: 6px;
-            margin-bottom: 14px;
             overflow-x: auto;
             padding-bottom: 4px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .filter-tabs::-webkit-scrollbar {
+            display: none;
         }
 
         .tab {
-            padding: 6px 12px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            font-size: 0.75rem;
+            padding: 7px 13px;
+            background: #e2e8f0;
+            border: 1px solid #cbd5e1;
+            border-radius: 18px;
+            font-size: 0.78rem;
             font-weight: 700;
-            color: #a8dadc;
+            color: #475569;
             white-space: nowrap;
             cursor: pointer;
+            transition: all 0.2s;
         }
 
         .tab.active {
-            background: #ffd166;
-            color: #050d1a;
-            border-color: #ffd166;
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3);
+        }
+
+        .tab-person {
+            background: #fef3c7;
+            border-color: #fde68a;
+            color: #b45309;
+        }
+
+        .tab-person.active {
+            background: #d97706;
+            color: #ffffff;
+            border-color: #b45309;
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.3);
         }
 
         .item-list {
@@ -302,21 +325,21 @@
         }
 
         .item-card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
             border-radius: 14px;
-            padding: 10px 12px;
+            padding: 12px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
 
         .item-card.completed {
-            background: rgba(6, 214, 160, 0.08);
-            border-color: rgba(6, 214, 160, 0.25);
-            opacity: 0.7;
+            background: #dcfce7;
+            border-color: #86efac;
         }
 
         .item-left {
@@ -331,22 +354,24 @@
         .checkbox {
             width: 22px;
             height: 22px;
-            border: 2px solid #ffd166;
+            border: 2px solid #059669;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            background: #fff;
+            transition: all 0.2s;
         }
 
         .item-card.completed .checkbox {
-            background: #06d6a0;
-            border-color: #06d6a0;
+            background: #059669;
+            border-color: #059669;
         }
 
         .checkbox::after {
             content: '✓';
-            color: #050d1a;
+            color: #ffffff;
             font-weight: 900;
             font-size: 13px;
             display: none;
@@ -357,61 +382,58 @@
         }
 
         .item-text {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 600;
-            color: #ffffff;
+            color: #1e293b;
             word-break: break-word;
         }
 
         .item-card.completed .item-text {
             text-decoration: line-through;
-            color: #8892b0;
+            color: #166534;
+            font-weight: 700;
         }
 
         .badge {
-            padding: 4px 8px;
-            border-radius: 10px;
+            padding: 5px 10px;
+            border-radius: 12px;
             font-size: 0.75rem;
             font-weight: 700;
             white-space: nowrap;
             cursor: pointer;
-            transition: transform 0.1s;
-        }
-
-        .badge:active {
-            transform: scale(0.95);
         }
 
         .badge-person {
-            background: rgba(255, 209, 102, 0.15);
-            color: #ffd166;
-            border: 1px solid rgba(255, 209, 102, 0.4);
+            background: #fef3c7;
+            color: #d97706;
+            border: 1px solid #fde68a;
         }
 
         .badge-none {
-            background: rgba(255, 107, 107, 0.15);
-            color: #ff6b6b;
-            border: 1px solid rgba(255, 107, 107, 0.4);
+            background: #ffe4e6;
+            color: #e11d48;
+            border: 1px solid #fecdd3;
         }
 
         .btn-delete {
             background: none;
             border: none;
-            color: #ff6b6b;
+            color: #ef4444;
             font-size: 1.1rem;
             cursor: pointer;
             padding: 2px 4px;
+            opacity: 0.7;
         }
 
-        /* Modal styling for editing names */
+        /* Modal styling */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(5px);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(8px);
             z-index: 100;
             display: flex;
             align-items: center;
@@ -428,22 +450,21 @@
         }
 
         .modal-body {
-            background: #0d233a;
-            border: 1px solid rgba(255, 209, 102, 0.3);
-            border-radius: 18px;
-            padding: 20px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 22px;
             width: 100%;
-            max-width: 380px;
+            max-width: 420px;
             display: flex;
             flex-direction: column;
             gap: 14px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         .modal-title {
             font-size: 1.1rem;
-            font-weight: 700;
-            color: #ffd166;
+            font-weight: 800;
+            color: #15803d;
             text-align: center;
         }
 
@@ -452,22 +473,25 @@
             flex-wrap: wrap;
             gap: 6px;
             justify-content: center;
+            max-height: 180px;
+            overflow-y: auto;
+            padding: 4px;
         }
 
         .name-chip {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
             padding: 6px 12px;
             border-radius: 12px;
             font-size: 0.8rem;
-            color: #a8dadc;
+            color: #334155;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .name-chip:active {
-            background: #ffd166;
-            color: #050d1a;
+            background: #15803d;
+            color: #ffffff;
         }
 
         .modal-actions {
@@ -479,7 +503,7 @@
         .btn-modal {
             flex: 1;
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             border: none;
             font-weight: 700;
             cursor: pointer;
@@ -487,52 +511,90 @@
         }
 
         .btn-modal.save {
-            background: #06d6a0;
-            color: #050d1a;
+            background: #15803d;
+            color: #ffffff;
         }
 
         .btn-modal.clear {
-            background: rgba(255, 107, 107, 0.2);
-            color: #ff6b6b;
-            border: 1px solid rgba(255, 107, 107, 0.3);
+            background: #ffe4e6;
+            color: #e11d48;
         }
 
         .btn-modal.cancel {
-            background: rgba(255, 255, 255, 0.1);
-            color: #a8dadc;
+            background: #f1f5f9;
+            color: #64748b;
         }
     </style>
 </head>
 <body>
 
-    <canvas id="night-canvas"></canvas>
+    <canvas id="fireflies-canvas"></canvas>
 
     <div class="container">
-        <div class="header">
-            <h1>🔥 Поход на Кемпинг 🏕️</h1>
-            <p>Общий чек-лист группы</p>
+        <!-- ШАПКА -->
+        <div class="hero-header">
+            <div class="summer-badge">🏕️ Дикая природа • Лес • Озеро</div>
+            <h1 class="main-title">ЛЕТНИЙ КЕМПИНГ <span class="year">2027</span></h1>
+            
+            <div class="subtitle-pills">
+                <span class="pill">Палатки</span>
+                <span class="pill">Костёр</span>
+                <span class="pill">Гитара</span>
+                <span class="pill">Шашлыки</span>
+                <span class="pill">Звёзды</span>
+            </div>
+
             <div class="sync-badge">
                 <div class="sync-dot"></div>
-                <span id="syncStatus">Подключение к Firebase...</span>
+                <span id="syncStatus">Подключение к базе...</span>
             </div>
         </div>
 
-        <div class="camp-scene">
-            <div class="guitar-wrap">🎸</div>
-            <div class="campfire">
-                <div class="logs">
-                    <div class="log l1"></div>
-                    <div class="log l2"></div>
-                </div>
-                <div class="flame f1"></div>
-                <div class="flame f2"></div>
-                <div class="flame f3"></div>
-            </div>
+        <!-- ВЕКТОРНАЯ СЦЕНА КЕМПИНГА -->
+        <div class="chill-scene-svg">
+            <svg class="camping-svg" viewBox="0 0 600 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Луна -->
+                <circle cx="510" cy="45" r="24" fill="#FEF3C7" opacity="0.9"/>
+                <circle cx="520" cy="40" r="20" fill="#1E1B4B"/>
+
+                <!-- Горы и силуэты деревьев -->
+                <polygon points="10,210 110,110 210,210" fill="rgba(255,255,255,0.08)"/>
+                <polygon points="140,210 280,85 400,210" fill="rgba(255,255,255,0.12)"/>
+                <polygon points="350,210 470,100 570,210" fill="rgba(255,255,255,0.05)"/>
+
+                <!-- Елочки -->
+                <polygon points="60,210 75,170 90,210" fill="#14532D"/>
+                <polygon points="110,210 130,150 150,210" fill="#166534"/>
+                <polygon points="480,210 500,160 520,210" fill="#14532D"/>
+
+                <!-- ПАЛАТКА -->
+                <g transform="translate(140, 90)">
+                    <polygon points="10,110 80,20 150,110" fill="#D97706"/>
+                    <polygon points="80,20 150,110 120,110" fill="#B45309"/>
+                    <polygon points="80,20 60,110 100,110" fill="#78350F"/>
+                </g>
+
+                <!-- КОСТЁР И БРЕВНО -->
+                <g transform="translate(340, 140)">
+                    <!-- Бревно -->
+                    <rect x="70" y="45" width="80" height="16" rx="8" fill="#78350F" transform="rotate(-5, 110, 50)"/>
+                    
+                    <!-- Дрова -->
+                    <line x1="10" y1="55" x2="40" y2="35" stroke="#451A03" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="40" y1="55" x2="10" y2="35" stroke="#451A03" stroke-width="6" stroke-linecap="round"/>
+                    
+                    <!-- Пламя костра -->
+                    <path d="M 25 45 Q 15 25 25 10 Q 35 25 25 45 Z" fill="#EF4444"/>
+                    <path d="M 25 45 Q 18 30 25 18 Q 32 30 25 45 Z" fill="#F59E0B"/>
+                    <path d="M 25 45 Q 20 35 25 25 Q 30 35 25 45 Z" fill="#FEF08A"/>
+                </g>
+            </svg>
         </div>
 
+        <!-- КАРТОЧКА СПИСКА -->
         <div class="card">
             <div class="input-box">
-                <input type="text" id="itemInput" placeholder="Что нужно взять?">
+                <input type="text" id="itemInput" placeholder="Что нужно взять в поход?">
                 <div class="input-row">
                     <input type="text" id="nameInput" placeholder="Кто берет?">
                     <button class="btn-add" onclick="addItem()">+ Добавить</button>
@@ -541,42 +603,53 @@
 
             <div class="progress-box">
                 <div class="progress-info">
-                    <span>Собрано вещей:</span>
-                    <span id="progressText">0 / 0</span>
+                    <span>Готовность лагеря:</span>
+                    <span id="progressText">0 из 0</span>
                 </div>
                 <div class="progress-bar-bg">
                     <div class="progress-bar-fill" id="progressFill"></div>
                 </div>
             </div>
 
-            <div class="filter-tabs">
-                <div class="tab active" onclick="setFilter('all', this)">Все вещи</div>
-                <div class="tab" onclick="setFilter('pending', this)">Нужно собрать</div>
-                <div class="tab" onclick="setFilter('done', this)">Уже собрано</div>
+            <div class="filter-section">
+                <div class="filter-label">Статус:</div>
+                <div class="filter-tabs">
+                    <div class="tab active" onclick="setStatusFilter('all', this)">Все вещи</div>
+                    <div class="tab" onclick="setStatusFilter('pending', this)">Нужно купить/взять</div>
+                    <div class="tab" onclick="setStatusFilter('done', this)">Уже собрано</div>
+                </div>
+
+                <div class="filter-label" style="margin-top: 4px;">Участники:</div>
+                <div class="filter-tabs" id="personTabs">
+                    <div class="tab tab-person active" onclick="setPersonFilter('all', this)">Все люди</div>
+                    <div class="tab tab-person" onclick="setPersonFilter('none', this)">❓ Не назначено</div>
+                </div>
             </div>
 
             <ul class="item-list" id="itemList"></ul>
         </div>
     </div>
 
-    <!-- Modal for Editing Responsible Name -->
+    <!-- Modal окно назначения ответственного -->
     <div class="modal-overlay" id="editModal">
         <div class="modal-body">
             <div class="modal-title" id="modalItemTitle">Назначить ответственного</div>
             
-            <div style="font-size: 0.8rem; color: #a8dadc; text-align: center;">Быстрый выбор участника:</div>
+            <div style="font-size: 0.8rem; color: #64748b; text-align: center;">Быстрый выбор:</div>
             <div class="quick-names">
+                <span class="name-chip" onclick="selectQuickName('Саша')">Саша</span>
+                <span class="name-chip" onclick="selectQuickName('Ваня')">Ваня</span>
                 <span class="name-chip" onclick="selectQuickName('Вова')">Вова</span>
-                <span class="name-chip" onclick="selectQuickName('Верон')">Верон</span>
-                <span class="name-chip" onclick="selectQuickName('Витя')">Витя</span>
+                <span class="name-chip" onclick="selectQuickName('Дима')">Дима</span>
+                <span class="name-chip" onclick="selectQuickName('Даня')">Даня</span>
                 <span class="name-chip" onclick="selectQuickName('Аня')">Аня</span>
-                <span class="name-chip" onclick="selectQuickName('Леша')">Леша</span>
-                <span class="name-chip" onclick="selectQuickName('Руся')">Руся</span>
-                <span class="name-chip" onclick="selectQuickName('Маша')">Маша</span>
+                <span class="name-chip" onclick="selectQuickName('Лёша')">Лёша</span>
+                <span class="name-chip" onclick="selectQuickName('Витя')">Витя</span>
+                <span class="name-chip" onclick="selectQuickName('Алёнка')">Алёнка</span>
             </div>
 
-            <div style="font-size: 0.8rem; color: #a8dadc; text-align: center; margin-top: 4px;">Или добавьте / измените имя:</div>
-            <input type="text" id="modalNameInput" placeholder="Имя (например: Вова + Леша)">
+            <div style="font-size: 0.8rem; color: #64748b; text-align: center; margin-top: 4px;">Или введите имя:</div>
+            <input type="text" id="modalNameInput" placeholder="Имя участника">
 
             <div class="modal-actions">
                 <button class="btn-modal clear" onclick="clearName()">Сбросить</button>
@@ -586,13 +659,12 @@
         </div>
     </div>
 
-    <!-- Firebase SDK (v9 Compat mode) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <script>
-        // Canvas Animation
-        const canvas = document.getElementById('night-canvas');
+        // Анимированный эффект светлячков
+        const canvas = document.getElementById('fireflies-canvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
@@ -602,58 +674,47 @@
             height = canvas.height = window.innerHeight;
         });
 
-        const stars = [];
-        for (let i = 0; i < 50; i++) {
-            stars.push({ x: Math.random() * width, y: Math.random() * height * 0.7, size: Math.random() * 1.5, alpha: Math.random() });
-        }
-
         const fireflies = [];
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 35; i++) {
             fireflies.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                radius: Math.random() * 2 + 1,
-                vx: (Math.random() - 0.5) * 0.6,
-                vy: (Math.random() - 0.5) * 0.6,
+                r: Math.random() * 2.5 + 1,
                 alpha: Math.random(),
-                pulse: Math.random() * 0.03 + 0.01
+                speed: Math.random() * 0.02 + 0.005
             });
         }
 
-        function drawNight() {
+        function drawFireflies() {
             ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = '#ffffff';
-            stars.forEach(s => {
-                ctx.globalAlpha = s.alpha;
-                ctx.fillRect(s.x, s.y, s.size, s.size);
-            });
+            fireflies.forEach(p => {
+                p.alpha += p.speed;
+                if (p.alpha > 1 || p.alpha < 0) p.speed = -p.speed;
 
-            fireflies.forEach(f => {
-                f.x += f.vx;
-                f.y += f.vy;
-                if (f.x < 0 || f.x > width) f.vx *= -1;
-                if (f.y < 0 || f.y > height) f.vy *= -1;
-                f.alpha += f.pulse;
-                if (f.alpha > 1 || f.alpha < 0.2) f.pulse *= -1;
-
-                ctx.globalAlpha = Math.max(0, Math.min(1, f.alpha));
                 ctx.beginPath();
-                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-                ctx.fillStyle = '#ffd166';
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = '#ffd166';
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(253, 224, 71, ${Math.abs(p.alpha)})`;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = "#fde047";
                 ctx.fill();
-                ctx.shadowBlur = 0;
+
+                p.y -= 0.3;
+                p.x += Math.sin(p.y * 0.05) * 0.3;
+
+                if (p.y < -10) {
+                    p.y = height + 10;
+                    p.x = Math.random() * width;
+                }
             });
-            requestAnimationFrame(drawNight);
+            requestAnimationFrame(drawFireflies);
         }
-        drawNight();
+        drawFireflies();
 
         // --- FIREBASE CONFIGURATION ---
         const firebaseConfig = {
             apiKey: "AIzaSyC6qT5vyGXr48TwGwa76ev65UjDZ5nWn54",
             authDomain: "camping-2027.firebaseapp.com",
-            databaseURL: "https://camping-2027-default-rtdb.europe-west1.firebasedatabase.app",
+            databaseURL: "https://ski-db-f2a97-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "camping-2027",
             storageBucket: "camping-2027.firebasestorage.app",
             messagingSenderId: "441053727767",
@@ -661,77 +722,96 @@
             measurementId: "G-9P04VB75SP"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        // Стандартный чек-лист для похода
         const defaultItems = [
-            { text: "Зарядная станция от Темы", takenBy: "Вова", done: false },
-            { text: "Походная плита", takenBy: "Верон", done: false },
-            { text: "Wasserkocher для каши", takenBy: "Витя", done: false },
-            { text: "Гриль кастрюля", takenBy: "Аня", done: false },
-            { text: "Гриль чемодан", takenBy: "Витя", done: false },
-            { text: "Гитара", takenBy: "Леша / Вова", done: false },
-            { text: "Походная посуда", takenBy: "Каждый сам себе", done: false },
-            { text: "Сковородка", takenBy: "", done: false },
-            { text: "Кастрюля маленькая", takenBy: "", done: false },
-            { text: "Küchenrollen", takenBy: "", done: false },
-            { text: "Müllsäcke", takenBy: "", done: false },
-            { text: "Чай", takenBy: "", done: false },
-            { text: "Кофе", takenBy: "", done: false },
-            { text: "Молоко / сливки", takenBy: "", done: false },
-            { text: "Хлеб", takenBy: "", done: false },
-            { text: "Помидоры", takenBy: "", done: false },
-            { text: "Огурцы", takenBy: "", done: false },
-            { text: "Оливки", takenBy: "", done: false },
-            { text: "Сметана", takenBy: "", done: false },
-            { text: "Мясо для гриля (на 2 вечера)", takenBy: "", done: false },
-            { text: "Колбаса", takenBy: "", done: false },
-            { text: "Сыр", takenBy: "", done: false },
-            { text: "Маргарин / масло", takenBy: "", done: false },
-            { text: "Бухло / пиво", takenBy: "", done: false },
-            { text: "Кола", takenBy: "", done: false },
-            { text: "Семечки", takenBy: "", done: false },
-            { text: "Вода", takenBy: "", done: false },
-            { text: "Пачка макарон или 2 кг картошки", takenBy: "", done: false },
-            { text: "Угли", takenBy: "", done: false }
+            { text: "Палатка 3-х местная", takenBy: "Саша", done: false },
+            { text: "Спальники по количеству человек", takenBy: "Каждый сам", done: false },
+            { text: "Карематы / Пенки", takenBy: "", done: false },
+            { text: "Мангал + Шампуры / Решетка", takenBy: "Вова", done: false },
+            { text: "Уголь 10 кг + Средство для розжига", takenBy: "Ваня", done: false },
+            { text: "Гитара + чехол", takenBy: "Аня", done: false },
+            { text: "Складные стулья и стол", takenBy: "Витя", done: false },
+            { text: "Котелок для ухи / чая", takenBy: "Дима", done: false },
+            { text: "Газовая горелка + баллоны", takenBy: "Даня", done: false },
+            { text: "Топор + Пила туристическая", takenBy: "Лёша", done: false },
+            { text: "Средство от комаров и клещей", takenBy: "", done: false },
+            { text: "Фонарики налобные + батарейки", takenBy: "", done: false },
+            { text: "Аптечка (пластыри, антисептик)", takenBy: "Алёнка", done: false },
+            { text: "Вода питьевая 20L", takenBy: "", done: false },
+            { text: "Мясо на шашлык 5 кг", takenBy: "Саша", done: false },
+            { text: "Овощи (помидоры, огурцы, зелень)", takenBy: "", done: false },
+            { text: "Спички / Зажигалки", takenBy: "", done: false },
+            { text: "Одноразовая посуда и салфетки", takenBy: "", done: false }
         ];
 
         let items = defaultItems;
-        let currentFilter = 'all';
+        let currentStatusFilter = 'all';
+        let currentPersonFilter = 'all';
         let editingIndex = null;
 
-        // Логика сортировки: Выполнено (1) -> Назначено (2) -> Открыто (3)
         function sortItems() {
             items.sort((a, b) => {
                 const getPriority = (item) => {
-                    if (item.done) return 1; // Вверху: выполненно
-                    if (item.takenBy && item.takenBy.trim() !== '') return 2; // Потом: назначенно
-                    return 3; // Внизу: открыто
+                    if (item.done) return 1;
+                    if (item.takenBy && item.takenBy.trim() !== '') return 2;
+                    return 3;
                 };
                 return getPriority(a) - getPriority(b);
             });
         }
 
-        // Real-time synchronization listener
-        db.ref('camping_checklist').on('value', (snapshot) => {
+        db.ref('summer_camping_checklist').on('value', (snapshot) => {
             const data = snapshot.val();
-            if (data) {
+            if (data && Array.isArray(data) && data.length > 0) {
                 items = data;
                 sortItems();
                 renderItems();
+                renderPersonTabs();
             } else {
                 items = defaultItems;
                 sortItems();
-                db.ref('camping_checklist').set(items);
+                db.ref('summer_camping_checklist').set(items);
             }
             document.getElementById('syncStatus').innerText = "Онлайн (Синхронизировано)";
         });
 
         function saveState() {
             sortItems();
-            db.ref('camping_checklist').set(items);
+            db.ref('summer_camping_checklist').set(items);
             renderItems();
+            renderPersonTabs();
+        }
+
+        // Динамический рендер фильтра по именам
+        function renderPersonTabs() {
+            const personTabsContainer = document.getElementById('personTabs');
+            
+            const namesSet = new Set();
+            items.forEach(item => {
+                if (item.takenBy && item.takenBy.trim() !== '') {
+                    item.takenBy.split(',').forEach(n => {
+                        const trimmed = n.trim();
+                        if (trimmed) namesSet.add(trimmed);
+                    });
+                }
+            });
+
+            const uniqueNames = Array.from(namesSet).sort();
+
+            let html = `
+                <div class="tab tab-person ${currentPersonFilter === 'all' ? 'active' : ''}" onclick="setPersonFilter('all', this)">Все люди</div>
+                <div class="tab tab-person ${currentPersonFilter === 'none' ? 'active' : ''}" onclick="setPersonFilter('none', this)">❓ Не назначено</div>
+            `;
+
+            uniqueNames.forEach(name => {
+                const isActive = currentPersonFilter === name ? 'active' : '';
+                html += `<div class="tab tab-person ${isActive}" onclick="setPersonFilter('${name}', this)">👤 ${name}</div>`;
+            });
+
+            personTabsContainer.innerHTML = html;
         }
 
         function renderItems() {
@@ -742,15 +822,25 @@
             items.forEach((item, index) => {
                 if (item.done) completedCount++;
 
-                if (currentFilter === 'pending' && item.done) return;
-                if (currentFilter === 'done' && !item.done) return;
+                // Фильтр по статусу
+                if (currentStatusFilter === 'pending' && item.done) return;
+                if (currentStatusFilter === 'done' && !item.done) return;
+
+                // Фильтр по людям
+                if (currentPersonFilter === 'none') {
+                    if (item.takenBy && item.takenBy.trim() !== '') return;
+                } else if (currentPersonFilter !== 'all') {
+                    if (!item.takenBy) return;
+                    const names = item.takenBy.split(',').map(n => n.trim());
+                    if (!names.includes(currentPersonFilter)) return;
+                }
 
                 const li = document.createElement('li');
                 li.className = `item-card ${item.done ? 'completed' : ''}`;
 
                 const badge = item.takenBy 
                     ? `<span class="badge badge-person" onclick="openModal(${index})">👤 ${item.takenBy}</span>`
-                    : `<span class="badge badge-none" onclick="openModal(${index})">❓ Назначить</span>`;
+                    : `<span class="badge badge-none" onclick="openModal(${index})">❓ Кто берет?</span>`;
 
                 li.innerHTML = `
                     <div class="item-left" onclick="toggleDone(${index})">
@@ -796,14 +886,20 @@
             saveState();
         }
 
-        function setFilter(filter, tabEl) {
-            currentFilter = filter;
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        function setStatusFilter(filter, tabEl) {
+            currentStatusFilter = filter;
+            tabEl.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             tabEl.classList.add('active');
             renderItems();
         }
 
-        // Modal Functions
+        function setPersonFilter(person, tabEl) {
+            currentPersonFilter = person;
+            tabEl.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            tabEl.classList.add('active');
+            renderItems();
+        }
+
         function openModal(index) {
             editingIndex = index;
             const item = items[index];
