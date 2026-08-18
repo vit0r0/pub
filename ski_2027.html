@@ -266,16 +266,36 @@
             transition: width 0.4s ease;
         }
 
+        /* ТАБЫ СТАТУСА И ИМЕН */
+        .filter-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .filter-label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+        }
+
         .filter-tabs {
             display: flex;
             gap: 6px;
-            margin-bottom: 14px;
             overflow-x: auto;
             padding-bottom: 4px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .filter-tabs::-webkit-scrollbar {
+            display: none;
         }
 
         .tab {
-            padding: 8px 14px;
+            padding: 7px 13px;
             background: #e2e8f0;
             border: 1px solid #cbd5e1;
             border-radius: 18px;
@@ -292,6 +312,19 @@
             color: #ffffff;
             border-color: #0f172a;
             box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3);
+        }
+
+        .tab-person {
+            background: #fef3c7;
+            border-color: #fde68a;
+            color: #b45309;
+        }
+
+        .tab-person.active {
+            background: #d97706;
+            color: #ffffff;
+            border-color: #b45309;
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.3);
         }
 
         .item-list {
@@ -649,10 +682,19 @@
                 </div>
             </div>
 
-            <div class="filter-tabs">
-                <div class="tab active" onclick="setFilter('all', this)">Все вещи</div>
-                <div class="tab" onclick="setFilter('pending', this)">Нужно собрать</div>
-                <div class="tab" onclick="setFilter('done', this)">Уже в багажнике</div>
+            <div class="filter-section">
+                <div class="filter-label">Статус:</div>
+                <div class="filter-tabs">
+                    <div class="tab active" onclick="setStatusFilter('all', this)">Все вещи</div>
+                    <div class="tab" onclick="setStatusFilter('pending', this)">Нужно собрать</div>
+                    <div class="tab" onclick="setStatusFilter('done', this)">Уже в багажнике</div>
+                </div>
+
+                <div class="filter-label" style="margin-top: 4px;">Кто берет:</div>
+                <div class="filter-tabs" id="personTabs">
+                    <div class="tab tab-person active" onclick="setPersonFilter('all', this)">Все участники</div>
+                    <div class="tab tab-person" onclick="setPersonFilter('none', this)">❓ Не назначено</div>
+                </div>
             </div>
 
             <ul class="item-list" id="itemList"></ul>
@@ -750,7 +792,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // ПОЛНЫЙ СПИСОК (Снаряжение + 28 позиций со скриншота)
+        // ПОЛНЫЙ СПИСОК (Снаряжение + 28 позиций)
         const defaultItems = [
             // Экипировка и документы
             { text: "Горнолыжная куртка и штаны", takenBy: "Каждый сам", done: false },
@@ -799,7 +841,8 @@
         ];
 
         let items = defaultItems;
-        let currentFilter = 'all';
+        let currentStatusFilter = 'all';
+        let currentPersonFilter = 'all';
         let editingIndex = null;
 
         function sortItems() {
@@ -819,6 +862,7 @@
                 items = data;
                 sortItems();
                 renderItems();
+                renderPersonTabs();
             } else {
                 items = defaultItems;
                 sortItems();
@@ -831,6 +875,38 @@
             sortItems();
             db.ref('val_gardena_checklist').set(items);
             renderItems();
+            renderPersonTabs();
+        }
+
+        // РЕНДЕР КНОПОК ФИЛЬТРАЦИИ ПО ИМЕНАМ
+        function renderPersonTabs() {
+            const personTabsContainer = document.getElementById('personTabs');
+            
+            // Находим уникальные имена
+            const namesSet = new Set();
+            items.forEach(item => {
+                if (item.takenBy && item.takenBy.trim() !== '') {
+                    // Разделяем имена если несколько (через запятую)
+                    item.takenBy.split(',').forEach(n => {
+                        const trimmed = n.trim();
+                        if (trimmed) namesSet.add(trimmed);
+                    });
+                }
+            });
+
+            const uniqueNames = Array.from(namesSet).sort();
+
+            let html = `
+                <div class="tab tab-person ${currentPersonFilter === 'all' ? 'active' : ''}" onclick="setPersonFilter('all', this)">Все участники</div>
+                <div class="tab tab-person ${currentPersonFilter === 'none' ? 'active' : ''}" onclick="setPersonFilter('none', this)">❓ Не назначено</div>
+            `;
+
+            uniqueNames.forEach(name => {
+                const isActive = currentPersonFilter === name ? 'active' : '';
+                html += `<div class="tab tab-person ${isActive}" onclick="setPersonFilter('${name}', this)">👤 ${name}</div>`;
+            });
+
+            personTabsContainer.innerHTML = html;
         }
 
         function renderItems() {
@@ -841,8 +917,18 @@
             items.forEach((item, index) => {
                 if (item.done) completedCount++;
 
-                if (currentFilter === 'pending' && item.done) return;
-                if (currentFilter === 'done' && !item.done) return;
+                // Фильтрация по статусу
+                if (currentStatusFilter === 'pending' && item.done) return;
+                if (currentStatusFilter === 'done' && !item.done) return;
+
+                // Фильтрация по имени
+                if (currentPersonFilter === 'none') {
+                    if (item.takenBy && item.takenBy.trim() !== '') return;
+                } else if (currentPersonFilter !== 'all') {
+                    if (!item.takenBy) return;
+                    const names = item.takenBy.split(',').map(n => n.trim());
+                    if (!names.includes(currentPersonFilter)) return;
+                }
 
                 const li = document.createElement('li');
                 li.className = `item-card ${item.done ? 'completed' : ''}`;
@@ -895,9 +981,16 @@
             saveState();
         }
 
-        function setFilter(filter, tabEl) {
-            currentFilter = filter;
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        function setStatusFilter(filter, tabEl) {
+            currentStatusFilter = filter;
+            tabEl.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            tabEl.classList.add('active');
+            renderItems();
+        }
+
+        function setPersonFilter(person, tabEl) {
+            currentPersonFilter = person;
+            tabEl.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             tabEl.classList.add('active');
             renderItems();
         }
